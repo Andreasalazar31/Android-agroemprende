@@ -13,6 +13,9 @@
         android:theme="@style/Theme.InterfazAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".ProyectosEmpresario"
+            android:exported="false" />
+        <activity
             android:name=".Menutoald"
             android:exported="false" />
         <activity
