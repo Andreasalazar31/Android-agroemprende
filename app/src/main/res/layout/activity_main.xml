@@ -32,6 +32,7 @@
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
                 android:layout_width="330dp"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress" />
@@ -45,34 +46,33 @@
             android:hint="Contraseña">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/purple"
-            android:text="Inicia sesion"
-            android:onClick="onLoginClick"/>
-
+            android:text="Inicia sesión"
+            android:onClick="onLoginClick" />
 
     </LinearLayout>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="¿No tienes cuenta? Regístrate"
-    android:layout_marginTop="16dp"
-    android:onClick="onRegisterClick"
-    android:textStyle="bold"
-    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿No tienes cuenta? Regístrate"
+        android:layout_marginTop="16dp"
+        android:onClick="onRegisterClick"
+        android:textStyle="bold" />
 
-
+    <Button
+        android:id="@+id/btnPrueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="boton"/>
 </LinearLayout>
-
-
-
