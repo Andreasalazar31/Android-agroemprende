@@ -1,6 +1,9 @@
 package com.example.interfazandroid.modelLogin;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Token {
+    @SerializedName("access_token")
     private String token;
 
     public Token() {
