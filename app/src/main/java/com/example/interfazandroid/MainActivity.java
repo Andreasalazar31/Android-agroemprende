@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     // INICIAR LA ACTIVIDAD PRINCIPAL DE TU APLICACION
     private void startMainActivity() {
-        Intent intent = new Intent(MainActivity.this, Menu.class);
+        Intent intent = new Intent(MainActivity.this, MenuUsuario.class);
         startActivity(intent);
         finish(); // Cierra la actividad de login
     }
