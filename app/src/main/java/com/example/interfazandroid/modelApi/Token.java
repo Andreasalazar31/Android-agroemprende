@@ -1,4 +1,4 @@
-package com.example.interfazandroid.modelLogin;
+package com.example.interfazandroid.modelApi;
 
 import com.google.gson.annotations.SerializedName;
 

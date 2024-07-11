@@ -1,10 +1,12 @@
 package com.example.interfazandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.text.InputType;
 
@@ -17,6 +19,7 @@ public class Register extends AppCompatActivity {
     private EditText etPassword, etConfirmPassword;
     private TextInputLayout tilConfirmPassword;
     private boolean passwordVisible = false;
+    private TextView Sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class Register extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPasswordd);
         tilConfirmPassword = findViewById(R.id.tilConfirmPassword);
+        Sesion = findViewById(R.id.Sesion);
 
         Button btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +52,14 @@ public class Register extends AppCompatActivity {
         // Mostrar/Ocultar contraseña al hacer clic en el EditText de contraseña
         setupPasswordVisibilityToggle(etPassword);
         setupPasswordVisibilityToggle(etConfirmPassword);
+
+        Sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupPasswordVisibilityToggle(final EditText editText) {

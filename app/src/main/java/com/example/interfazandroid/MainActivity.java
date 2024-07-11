@@ -7,16 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.interfazandroid.modelLogin.ApiLogin;
-import com.example.interfazandroid.modelLogin.ApiService;
-import com.example.interfazandroid.modelLogin.Token;
+import com.example.interfazandroid.modelApi.ApiLogin;
+import com.example.interfazandroid.modelApi.ApiService;
+import com.example.interfazandroid.modelApi.Token;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
-    Button btnLogin;
-    TextView Resgistrarse;
+    private Button btnLogin;
+    private TextView Resgistrarse;
+    private ProgressBar progressBar;
     private static final String TAG = "MainActivity";
 
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         Resgistrarse = findViewById(R.id.Registrarse);
+        progressBar = findViewById(R.id.progressBar);
 
         Resgistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         //OCULTAR TECLADO
         View view = this.getCurrentFocus();
-        if(view != null){
+        if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
@@ -91,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        //MOSTRAR EL ProgressBar
+        progressBar.setVisibility(View.VISIBLE);
+
         //Crear una instancia del servidor Api
         ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
         //Realizar el llamado de inicio de sesion
@@ -99,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
+                //OCULTAR ProgressBAr
+                progressBar.setVisibility(View.GONE);
+
+                Log.d(TAG, "Código de estado: " + response.code());
                 if (response.isSuccessful()) {
                     Token token = response.body();
                     if (token != null && token.getToken() != null) {
@@ -111,19 +120,26 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Error: Token inválido o nulo", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e(TAG, "Error en el login: " + errorBody);
-                        Toast.makeText(MainActivity.this, "Error en el login: " + errorBody, Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        Log.e(TAG, "Error parsing error body", e);
-                        Toast.makeText(MainActivity.this, "Error en el login", Toast.LENGTH_SHORT).show();
+                    if (response.code() == 404) {
+                        Toast.makeText(MainActivity.this, "Contraseña incorrecta. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+                    } else {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e(TAG, "Error en el login: " + errorBody);
+                            Toast.makeText(MainActivity.this, "Error en el login: " + errorBody, Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            Log.e(TAG, "Error parsing error body", e);
+                            Toast.makeText(MainActivity.this, "Error en el login", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
+                //OCULTAR ProgressBAr
+                progressBar.setVisibility(View.GONE);
+
                 Log.e(TAG, "Fallo en la conexión: " + t.getMessage(), t);
                 Toast.makeText(MainActivity.this, "Fallo en la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }

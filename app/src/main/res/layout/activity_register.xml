@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="32dp"
-        android:text="Register"
+        android:text="Registrarse"
         android:textSize="29sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="360dp"
-        android:layout_height="521dp"
+        android:layout_height="520dp"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -69,15 +69,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
-
-
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
-
             android:hint="Contraseña"
             android:inputType="textPassword" />
 
@@ -108,18 +104,15 @@
             android:textColor="@android:color/white" />
 
         <TextView
+            android:id="@+id/Sesion"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:onClick="onLoginClick"
-            android:text="Login"
+            android:text="Inicia Sesion"
             android:textColor="#000000"
             android:textStyle="bold" />
-
-
-
     </LinearLayout>
 
 

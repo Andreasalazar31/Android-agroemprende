@@ -60,7 +60,18 @@
             android:text="Inicia sesión"
             android:onClick="onLoginClick" />
 
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Olvidaste tu contraseña?"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/azul"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -80,4 +91,10 @@
                 android:textStyle="bold"
                 android:textColor="@color/azul"/>
         </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
     </LinearLayout>
