@@ -1,4 +1,4 @@
-package com.example.interfazandroid;
+package com.example.interfazandroid.MenuRegistro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.text.InputType;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.interfazandroid.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 

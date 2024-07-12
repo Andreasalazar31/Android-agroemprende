@@ -1,4 +1,4 @@
-package com.example.interfazandroid;
+package com.example.interfazandroid.Usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.interfazandroid.NotificacionesUsuario;
+import com.example.interfazandroid.R;
 
 public class MenuUsuario extends AppCompatActivity {
     private Button btnCrear;
@@ -35,7 +35,18 @@ public class MenuUsuario extends AppCompatActivity {
         icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Abrir la actividad de PerfilUsuario
                 Intent intent = new Intent(MenuUsuario.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+
+        // Configuración del clic para abrir NotificacionesActivity
+        ImageView iconNotificaciones = findViewById(R.id.iconNotificacion);
+        iconNotificaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuUsuario.this, NotificacionesUsuario.class);
                 startActivity(intent);
             }
         });

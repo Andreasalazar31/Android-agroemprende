@@ -7,7 +7,7 @@
 
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".FormularioProyectoUsuario">
+    tools:context=".Usuario.FormularioProyectoUsuario">
 
 
     <!-- Alinear el formulario en el centro vertical -->

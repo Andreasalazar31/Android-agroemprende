@@ -1,4 +1,4 @@
-package com.example.interfazandroid;
+package com.example.interfazandroid.MenuRegistro;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.interfazandroid.R;
+import com.example.interfazandroid.Usuario.MenuUsuario;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.Token;
