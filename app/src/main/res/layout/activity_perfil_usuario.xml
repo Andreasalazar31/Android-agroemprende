@@ -46,6 +46,8 @@
             android:layout_gravity="center"
             android:layout_marginBottom="73dp"
             android:layout_height="160dp"
+            android:clickable="true"
+            android:onClick="seleccionarImagenDesdeGaleria"
             android:src="@drawable/perfil" />
 
 

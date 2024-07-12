@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,11 +9,32 @@
     tools:context=".NotificacionesUsuario">
 
 
-
-    <ListView
-        android:id="@+id/listViewNotificaciones"
+    <TextView
+        android:id="@+id/notification_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:text="Título de la Notificación"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="@android:color/white" />
 
+    <TextView
+        android:id="@+id/notification_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contenido de la Notificación"
+        android:textSize="14sp"
+        android:padding="10dp" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/notification_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Detalles"
+        android:onClick="onNotificationButtonClick"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
