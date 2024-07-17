@@ -17,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InterfazAndroid"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DetallesProyecto"
+            android:exported="false" />
+        <activity
+            android:name=".MenuRegistro.CerrarSesion"
+            android:exported="false" />
         <activity
             android:name=".NotificacionesUsuario"
             android:exported="false" />

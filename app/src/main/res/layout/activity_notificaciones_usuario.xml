@@ -1,40 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NotificacionesUsuario">
 
 
     <TextView
-        android:id="@+id/notification_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Título de la Notificación"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/notification_message"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contenido de la Notificación"
-        android:textSize="14sp"
-        android:padding="10dp" />
+        android:gravity="center"
+        android:layout_marginTop="93dp"
+        android:layout_marginLeft="103dp"
+        android:text="Notificaciones"
+        android:textSize="29sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/notification_button"
+
+    <LinearLayout
+        android:layout_width="319dp"
+        android:layout_height="506dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notification_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Proyecto revisado"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/notification_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/purple"
+            android:onClick="onNotificationButtonClick"
+            android:padding="10dp"
+            android:text="Ver"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/notification_messag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:padding="10dp"
+
+            android:text="Proyecto revisado"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/notification_butto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/purple"
+            android:onClick="onNotificationButtonClick"
+            android:padding="10dp"
+            android:text="Ver"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/notification_messa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:padding="10dp"
+
+            android:text="Proyecto revisado"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/notification_butt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/purple"
+            android:onClick="onNotificationButtonClick"
+            android:padding="10dp"
+            android:text="Ver"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver Detalles"
-        android:onClick="onNotificationButtonClick"
-        android:textColor="@android:color/white"
-        android:padding="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentBottom="true">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/icon1"
+                android:layout_width="40dp"
+                android:layout_height="47dp"
+                android:src="@drawable/baseline_co_present_24" />
+
+            <ImageView
+                android:id="@+id/icon2"
+                android:layout_width="40dp"
+                android:layout_height="47dp"
+                android:src="@drawable/proyectos"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+</RelativeLayout>

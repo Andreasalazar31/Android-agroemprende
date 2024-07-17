@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
+  android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Usuario.PerfilUsuario">
@@ -20,36 +20,33 @@
         android:layout_marginLeft="300dp"
         android:src="@drawable/editar" />
 
-    <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
             android:text="Perfil"
             android:textSize="29sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp" />
-
+            android:textStyle="bold" />
 
 
         <ImageView
             android:id="@+id/imagenPerfil"
             android:layout_width="420dp"
-
+            android:layout_height="160dp"
             android:layout_gravity="center"
             android:layout_marginBottom="73dp"
-            android:layout_height="160dp"
             android:clickable="true"
             android:onClick="seleccionarImagenDesdeGaleria"
             android:src="@drawable/perfil" />
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,12 +89,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
     </LinearLayout>
 
-    <!-- Toolbar alineada en la parte inferior -->
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -105,7 +100,8 @@
         android:background="@color/purple"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"> <!-- Este atributo asegura que la Toolbar se superponga a los botones -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,5 +124,6 @@
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
 
 </RelativeLayout>

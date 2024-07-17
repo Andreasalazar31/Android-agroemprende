@@ -42,16 +42,6 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@+id/toolbar"
-        android:layout_marginBottom="0dp">
-
-        <!-- Contenido del contenedor, puedes añadir tus fragmentos u otros elementos aquí -->
-
-    </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -81,6 +71,12 @@
                 android:src="@drawable/proyectos"
                 android:layout_marginStart="16dp" />
 
+            <ImageView
+                android:id="@+id/icon3"
+                android:layout_width="40dp"
+                android:layout_height="47dp"
+                android:src="@drawable/cerrarsesion"
+                android:layout_marginStart="16dp" />
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
