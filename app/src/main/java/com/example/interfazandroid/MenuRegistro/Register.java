@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -89,10 +90,10 @@ public class Register extends AppCompatActivity {
         //MOSTRAR EL PROGRESSBAR AL INICIO DEL PROCESO DE REGISTRO
         progressBar.setVisibility(View.VISIBLE);
 
-        String numIdentificacion = "Incompleto";
-        String telefono = "Incompleto";
-        String fechaNacimiento = LocalDate.of(1990, 1, 1).format(DateTimeFormatter.ISO_DATE);
-        String caracterizacion = "Incompleto";
+        String numIdentificacion = " ";
+        String telefono = " ";
+        String fechaNacimiento = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        String caracterizacion = " ";
         String role = "Usuario";
 
         ApiLogin apiLogin = new ApiLogin();

@@ -8,19 +8,19 @@ public class RegisterRequest {
     private String email;
     private String numIdentificacion;
     private String telefono;
-    private String fechaNacimieto;
+    private String fechaNacimiento;
     private String caracterizacion;
     private String contrasena;
     private String role;
 
-    public RegisterRequest(String nombre, String apellido, String email, String contrasena,String numIdentificacion, String telefono, String fechaNacimieto, String caracterizacion,  String role) {
+    public RegisterRequest(String nombre, String apellido, String email, String contrasena,String numIdentificacion, String telefono, String fechaNacimiento, String caracterizacion,  String role) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.contrasena = contrasena;
         this.numIdentificacion = numIdentificacion;
         this.telefono = telefono;
-        this.fechaNacimieto = fechaNacimieto;
+        this.fechaNacimiento = fechaNacimiento;
         this.caracterizacion = caracterizacion;
         this.role = role;
     }
@@ -65,12 +65,12 @@ public class RegisterRequest {
         this.telefono = telefono;
     }
 
-    public String getFechaNacimieto() {
-        return fechaNacimieto;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setFechaNacimieto(String fechaNacimieto) {
-        this.fechaNacimieto = fechaNacimieto;
+    public void setFechaNacimiento(String fechaNacimieto) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getCaracterizacion() {
