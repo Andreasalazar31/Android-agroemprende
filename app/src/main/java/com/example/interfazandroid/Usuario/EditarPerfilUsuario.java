@@ -1,29 +1,29 @@
-package com.example.interfazandroid;
+package com.example.interfazandroid.Usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowCompat;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
-import com.example.interfazandroid.Usuario.MenuUsuario;
-import com.example.interfazandroid.Usuario.PerfilUsuario;
+import com.example.interfazandroid.R;
 
-public class DetallesProyecto extends AppCompatActivity {
+public class EditarPerfilUsuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detalles_proyecto);
-
+        setContentView(R.layout.activity_editar_perfil_usuario);
         //////////////////////////////////TOOLBAR///////////////////////////////////////////////////
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -36,7 +36,7 @@ public class DetallesProyecto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navega a la vista deseada para icon1
-                Intent intent = new Intent(DetallesProyecto.this, PerfilUsuario.class);
+                Intent intent = new Intent(EditarPerfilUsuario.this, PerfilUsuario.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class DetallesProyecto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navega a la vista deseada para icon2
-                Intent intent = new Intent(DetallesProyecto.this, MenuUsuario.class);
+                Intent intent = new Intent(EditarPerfilUsuario.this, MenuUsuario.class);
                 startActivity(intent);
             }
         });
@@ -52,10 +52,24 @@ public class DetallesProyecto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navega a la vista deseada para icon3
-                Intent intent = new Intent(DetallesProyecto.this, MainActivity.class);
+                Intent intent = new Intent(EditarPerfilUsuario.this, MainActivity.class);
                 startActivity(intent);
             }
         });
         ////////////////////////////////////////////////////////////////////////////////////////////
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        Button btnCrear = findViewById(R.id.btnguardardatos);
+
+        btnCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(EditarPerfilUsuario.this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
+
+

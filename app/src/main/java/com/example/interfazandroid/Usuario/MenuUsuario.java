@@ -3,13 +3,17 @@ package com.example.interfazandroid.Usuario;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.example.interfazandroid.FormularioProyectoUsuario;
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.NotificacionesUsuario;
 import com.example.interfazandroid.R;
@@ -24,7 +28,35 @@ public class MenuUsuario extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_usuario);
 
+        //////////////////////////////////TOOLBAR///////////////////////////////////////////////////
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon2 = findViewById(R.id.icon2);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon1
+                Intent intent = new Intent(MenuUsuario.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon3
+                Intent intent = new Intent(MenuUsuario.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
         btnCrear = findViewById(R.id.btnCrear);
+
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +74,7 @@ public class MenuUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // Configuración del clic para abrir NotificacionesActivity
         ImageView iconNotificaciones = findViewById(R.id.iconNotificacion);

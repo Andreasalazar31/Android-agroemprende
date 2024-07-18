@@ -1,3 +1,4 @@
+<!-- res/layout/activity_main.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -43,42 +44,11 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"> <!-- Este atributo asegura que la Toolbar se superponga a los botones -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/icon1"
-                android:layout_width="40dp"
-                android:layout_height="47dp"
-                android:src="@drawable/baseline_co_present_24" />
-
-            <ImageView
-                android:id="@+id/icon2"
-                android:layout_width="40dp"
-                android:layout_height="47dp"
-                android:src="@drawable/proyectos"
-                android:layout_marginStart="16dp" />
-
-            <ImageView
-                android:id="@+id/icon3"
-                android:layout_width="40dp"
-                android:layout_height="47dp"
-                android:src="@drawable/cerrarsesion"
-                android:layout_marginStart="16dp" />
-        </LinearLayout>
-
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
 
 </RelativeLayout>

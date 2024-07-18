@@ -1,4 +1,4 @@
-package com.example.interfazandroid.Usuario;
+package com.example.interfazandroid;
 
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +17,11 @@ import androidx.annotation.Nullable;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import com.example.interfazandroid.R;
+import com.example.interfazandroid.MenuRegistro.MainActivity;
+import com.example.interfazandroid.Usuario.MenuUsuario;
+import com.example.interfazandroid.Usuario.PerfilUsuario;
 
 public class FormularioProyectoUsuario extends AppCompatActivity {
 
@@ -32,9 +35,44 @@ public class FormularioProyectoUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_formulario_proyecto_usuario);
+        //////////////////////////////////TOOLBAR///////////////////////////////////////////////////
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon2 = findViewById(R.id.icon2);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon1
+                Intent intent = new Intent(FormularioProyectoUsuario.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+        icon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon2
+                Intent intent = new Intent(FormularioProyectoUsuario.this, MenuUsuario.class);
+                startActivity(intent);
+            }
+        });
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon3
+                Intent intent = new Intent(FormularioProyectoUsuario.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         tvNombreArchivoAdjunto = findViewById(R.id.tvNombreArchivoAdjunto);
         btnEnviarProyecto = findViewById(R.id.btnEnviarProyecto);
+
+
 
         // Configurar el icono para adjuntar PDF
         ImageView iconAdjuntarPdf = findViewById(R.id.iconAdjuntarPdf);

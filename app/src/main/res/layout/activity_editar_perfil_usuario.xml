@@ -6,28 +6,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarPerfilUsuario">
-
-
-
+    tools:context=".Usuario.EditarPerfilUsuario">
 
     <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="700dp"
-        android:orientation="vertical"
-
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="23dp"
-        android:padding="16dp">
+        android:layout_width="400dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="662dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
             android:text="Editar"
             android:textSize="29sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
 
@@ -36,7 +34,7 @@
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-
+                android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre" />
@@ -51,7 +49,7 @@
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-
+                android:id="@+id/edtApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellido" />
@@ -59,20 +57,46 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo electronico" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNumIdentificacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numero de Identificacion" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telefono" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
@@ -80,21 +104,7 @@
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cedula" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-
+                android:id="@+id/edtNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Fecha de nacimiento" />
@@ -103,31 +113,16 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDescripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Correo electronico" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-
+                android:id="@+id/edtCaracterizacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Direccion" />
+                android:hint="Caracterizacion" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,40 +136,13 @@
             android:text="Guardar"
             android:textColor="@android:color/white" />
 
-
     </LinearLayout>
 
-    <!-- Toolbar alineada en la parte inferior -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentBottom="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/icon1"
-                android:layout_width="40dp"
-                android:layout_height="47dp"
-                android:src="@drawable/baseline_co_present_24" />
-
-            <ImageView
-                android:id="@+id/icon2"
-                android:layout_width="40dp"
-                android:layout_height="47dp"
-                android:src="@drawable/proyectos"
-                android:layout_marginStart="16dp" />
-
-        </LinearLayout>
-
-    </androidx.appcompat.widget.Toolbar>
-
-
+        android:layout_alignParentBottom="true"
+        android:fitsSystemWindows="true"/>
 </RelativeLayout>

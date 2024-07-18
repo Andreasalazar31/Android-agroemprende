@@ -1,44 +1,28 @@
 package com.example.interfazandroid.Usuario;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.content.Intent;
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 
-import com.example.interfazandroid.EditarPerfilUsuario;
-import com.example.interfazandroid.R;
-import com.example.interfazandroid.EditarPerfilUsuario;
+
+import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +31,7 @@ import retrofit2.Response;
 public class PerfilUsuario extends AppCompatActivity {
 
     private static final int REQUEST_CODE_GALLERY = 100;
-    private ImageView imageView;
+    private ImageView imageView, editarusuario;
     private Uri selectedImageUri;  // Variable para almacenar la URI seleccionada
     private String imageName = "selected_image.jpg";  // Nombre del archivo donde se guardará la imagen
     private TextView tvNombre, tvEmail, tvTelefono;
@@ -56,14 +40,49 @@ public class PerfilUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
+        //////////////////////////////////TOOLBAR///////////////////////////////////////////////////
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon2 = findViewById(R.id.icon2);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+        icon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon2
+                Intent intent = new Intent(PerfilUsuario.this, MenuUsuario.class);
+                startActivity(intent);
+            }
+        });
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega a la vista deseada para icon3
+                Intent intent = new Intent(PerfilUsuario.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         tvNombre = findViewById(R.id.tvNombre);
         tvEmail = findViewById(R.id.tvEmail);
         tvTelefono = findViewById(R.id.tvTelefono);
         imageView = findViewById(R.id.imagenPerfil);
+        editarusuario= findViewById(R.id.editarusuario);
 
         fetchUserDetails();
 
+
+        editarusuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PerfilUsuario.this, EditarPerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+/*
         // Restaurar la imagen seleccionada si está guardada
         selectedImageUri = loadImageFromStorage(imageName);
         if (selectedImageUri != null) {
@@ -72,16 +91,9 @@ public class PerfilUsuario extends AppCompatActivity {
 
         // Agregar OnClickListener a la ImageView para abrir la galería
         imageView.setOnClickListener(v -> verificarPermisosGaleria());
+*/
 
-        // Agregar OnClickListener a la ImageView 'editarusuario'
-        ImageView editarUsuarioImageView = findViewById(R.id.editarusuario);
-        editarUsuarioImageView.setOnClickListener(v -> {
-            // Crear un Intent para navegar a otra actividad
-            Intent intent = new Intent(PerfilUsuario.this, EditarPerfilUsuario.class);
-            startActivity(intent);
-        });
     }
-
     //////////MOSTRAR DATOS EN EL PERFIL/////////////////
     private void fetchUserDetails() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
@@ -144,22 +156,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /*
     // Verificar y solicitar permisos para acceder a la galería
     private void verificarPermisosGaleria() {
         if (ContextCompat.checkSelfPermission(this,
@@ -247,4 +244,6 @@ public class PerfilUsuario extends AppCompatActivity {
         }
         return null;
     }
+    */
+
 }

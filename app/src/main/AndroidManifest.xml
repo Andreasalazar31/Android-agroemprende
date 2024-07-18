@@ -27,13 +27,13 @@
             android:name=".NotificacionesUsuario"
             android:exported="false" />
         <activity
-            android:name=".EditarPerfilUsuario"
+            android:name=".Usuario.EditarPerfilUsuario"
             android:exported="false" />
         <activity
             android:name=".Usuario.PerfilUsuario"
             android:exported="false" />
         <activity
-            android:name=".Usuario.FormularioProyectoUsuario"
+            android:name=".FormularioProyectoUsuario"
             android:exported="false" />
         <activity
             android:name=".Usuario.MenuUsuario"
