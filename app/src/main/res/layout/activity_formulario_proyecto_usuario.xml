@@ -50,7 +50,7 @@
                 android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eje Estractegico" />
+                android:hint="Integrantes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,7 +63,7 @@
                 android:id="@+id/etObjetivos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Integrantes" />
+                android:hint="Eje estrategico" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,27 +76,11 @@
                 android:id="@+id/etEjeEstrategico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eje Estratégico" />
+                android:hint="Objetivos" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <ImageView
-            android:id="@+id/iconAdjuntarPdf"
-            android:layout_width="40dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
 
-            android:layout_marginTop="16dp"
-            android:src="@drawable/pdfdocumento" />
-
-        <TextView
-            android:id="@+id/tvNombreArchivoAdjunto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center"
-            android:text="No hay archivo adjunto"
-            android:textSize="16sp" />
 
 
         <Button

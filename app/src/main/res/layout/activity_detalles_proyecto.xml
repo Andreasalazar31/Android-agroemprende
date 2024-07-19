@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
@@ -10,11 +9,10 @@
 
 
     <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="93dp"
         android:layout_marginLeft="139dp"
         android:text="Revisión"
         android:textSize="29sp"
@@ -24,11 +22,8 @@
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
         android:layout_centerInParent="true"
         android:padding="16dp">
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNombre"
@@ -40,7 +35,7 @@
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre" />
+                android:hint="Titulo del proyecto" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -53,7 +48,7 @@
                 android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Descripción" />
+                android:hint="Integrantes" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +61,7 @@
                 android:id="@+id/etObjetivos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Objetivos" />
+                android:hint="Eje estrategico" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,22 +74,44 @@
                 android:id="@+id/etEjeEstrategico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eje Estratégico" />
+                android:hint="Objetivos" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnEnviarProyecto"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enviar proyecto"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple"
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnCargar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cargar"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnHistorial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Historial"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/purple"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
 
     </LinearLayout>
+
+
     <include
         android:id="@+id/include_toolbar"
-        layout="@layout/toolbar"
+       layout="@layout/toolbar"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
