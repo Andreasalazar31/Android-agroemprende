@@ -28,7 +28,10 @@
             android:exported="false" />
         <activity
             android:name=".Usuario.EditarPerfilUsuario"
-            android:exported="false" />
+            android:exported="false" >
+
+
+        </activity>
         <activity
             android:name=".Usuario.PerfilUsuario"
             android:exported="false" />
@@ -38,9 +41,7 @@
         <activity
             android:name=".Usuario.MenuUsuario"
             android:exported="false" />
-        <activity
-            android:name=".ProyectosEmpresario"
-            android:exported="false" />
+
         <activity
             android:name=".MenuRegistro.Register"
             android:exported="false" />
@@ -52,6 +53,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
