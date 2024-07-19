@@ -3,8 +3,6 @@ package com.example.interfazandroid.Usuario;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,9 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.interfazandroid.FormularioProyectoUsuario;
 import com.example.interfazandroid.MenuRegistro.MainActivity;
-import com.example.interfazandroid.NotificacionesUsuario;
 import com.example.interfazandroid.R;
 
 public class MenuUsuario extends AppCompatActivity {

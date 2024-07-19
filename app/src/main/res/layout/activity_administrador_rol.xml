@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Administrador.AdministradorRol">
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="93dp"
+        android:layout_marginLeft="139dp"
+        android:text="Usuarios"
+        android:textSize="29sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="496dp"
+        android:layout_marginTop="163dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Notificación 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/notification_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Proyecto revisado"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editarusuario1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/editarusuario"
+                android:contentDescription="Editar"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/deleteusuario1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eliminarusuario"
+            android:contentDescription="Eliminar"
+            android:padding="10dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/usuario2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Proyecto revisado"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editarusuario2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/editarusuario"
+                android:contentDescription="Editar"
+                android:layout_marginEnd="8dp"
+               android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/deleteusuario2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eliminarusuario"
+            android:contentDescription="Eliminar"
+            android:padding="10dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/usuario4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Proyecto revisado"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editarusuario4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/editarusuario"
+                android:contentDescription="Editar"
+                 android:layout_marginEnd="8dp"
+                 android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/deleteusuario4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eliminarusuario"
+            android:contentDescription="Eliminar"
+            android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/usuario5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Proyecto revisado"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editarusuario5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/editarusuario"
+                android:contentDescription="Editar"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/deleteusuario5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eliminarusuario"
+                android:contentDescription="Eliminar"
+                android:padding="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/notification_messa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Proyecto revisado"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editarusuario3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/editarusuario"
+                android:contentDescription="Editar"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/deleteusuario3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eliminarusuario"
+                android:contentDescription="Eliminar"
+                android:padding="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+</RelativeLayout>
