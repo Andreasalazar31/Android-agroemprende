@@ -26,9 +26,10 @@ public interface ApiService {
 
     @HTTP(method = "PATCH", path = "auth/usuario/{userId}", hasBody = true)
     Call<Void> updateUserProfile(
-            @Path("_id") String userId,
+            @Path("userId") String userId, // Usa "userId" para coincidir con el parámetro en la URL
             @Header("Authorization") String token,
             @Body UserUpdate userUpdateRequest
     );
+
 
 }

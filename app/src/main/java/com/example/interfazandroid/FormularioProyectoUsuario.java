@@ -69,19 +69,12 @@ public class FormularioProyectoUsuario extends AppCompatActivity {
         });
         ////////////////////////////////////////////////////////////////////////////////////////////
 
-        tvNombreArchivoAdjunto = findViewById(R.id.tvNombreArchivoAdjunto);
+
         btnEnviarProyecto = findViewById(R.id.btnEnviarProyecto);
 
 
 
-        // Configurar el icono para adjuntar PDF
-        ImageView iconAdjuntarPdf = findViewById(R.id.iconAdjuntarPdf);
-        iconAdjuntarPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirSelectorDeArchivos();
-            }
-        });
+
 
         btnEnviarProyecto.setOnClickListener(new View.OnClickListener() {
             @Override

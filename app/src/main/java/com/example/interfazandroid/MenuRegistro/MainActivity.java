@@ -2,6 +2,7 @@ package com.example.interfazandroid.MenuRegistro;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
     private Button btnLogin;
-    private TextView Resgistrarse;
+    private TextView registrarse;
     private ProgressBar progressBar;
     private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,77 +44,81 @@ public class MainActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        Resgistrarse = findViewById(R.id.Registrarse);
+        registrarse = findViewById(R.id.Registrarse);
         progressBar = findViewById(R.id.progressBar);
 
-        Resgistrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
-            }
+        registrarse.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, Register.class);
+            startActivity(intent);
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                performLogin();
-            }
-        });
+        btnLogin.setOnClickListener(view -> performLogin());
     }
 
-    // GUARDAR EL TOKEN EN SharedPreferences
     private void saveToken(String token) {
-        getSharedPreferences("MyApp", MODE_PRIVATE)
-                .edit()
-                .putString("UserToken", token)
-                .apply();
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("UserToken", token);
+        editor.apply();
     }
 
-    // INICIAR LA ACTIVIDAD PRINCIPAL DE TU APLICACION
+    private void saveUserId(String userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("UserId", userId);
+        editor.apply();
+    }
+
     private void startMainActivity() {
         Intent intent = new Intent(MainActivity.this, MenuUsuario.class);
         startActivity(intent);
         finish(); // Cierra la actividad de login
     }
 
-    //METODO DE INICIAR SESION
     private void performLogin() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        //OCULTAR TECLADO
+        // Ocultar teclado
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        //VALIDAR LOS CAMPOS QUE NO ESTEN VACIOS
+
+        // Validar campos
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Por favor, ingrese email y contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //MOSTRAR EL ProgressBar
+        // Mostrar ProgressBar
         progressBar.setVisibility(View.VISIBLE);
 
-        //Crear una instancia del servidor Api
+        // Crear una instancia del servicio API
         ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
-        //Realizar el llamado de inicio de sesion
+
+        // Realizar el llamado de inicio de sesión
         Call<Token> call = apiService.getlogin(email, password);
 
         call.enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
-                //OCULTAR ProgressBAr
+                // Ocultar ProgressBar
                 progressBar.setVisibility(View.GONE);
 
-                Log.d(TAG, "Código de estado: " + response.code());
                 if (response.isSuccessful()) {
                     Token token = response.body();
                     if (token != null && token.getToken() != null) {
                         Log.d(TAG, "Token recibido: " + token.getToken());
                         saveToken(token.getToken());
+
+                        // Si el token también incluye un ID de usuario, guárdalo
+                        String userId = token.getUserId(); // Asegúrate de que tu modelo Token tenga este campo
+                        if (userId != null) {
+                            saveUserId(userId);
+                        }
+
                         Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
                         startMainActivity();
                     } else {
@@ -122,24 +126,24 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Error: Token inválido o nulo", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    if (response.code() == 404) {
-                        Toast.makeText(MainActivity.this, "Contraseña incorrecta. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
-                    } else {
-                        try {
-                            String errorBody = response.errorBody().string();
-                            Log.e(TAG, "Error en el login: " + errorBody);
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e(TAG, "Error en el login: " + errorBody);
+                        if (response.code() == 404) {
+                            Toast.makeText(MainActivity.this, "Contraseña incorrecta. Intentelo de nuevo", Toast.LENGTH_SHORT).show();
+                        } else {
                             Toast.makeText(MainActivity.this, "Error en el login: " + errorBody, Toast.LENGTH_SHORT).show();
-                        } catch (IOException e) {
-                            Log.e(TAG, "Error parsing error body", e);
-                            Toast.makeText(MainActivity.this, "Error en el login", Toast.LENGTH_SHORT).show();
                         }
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error al analizar el cuerpo del error", e);
+                        Toast.makeText(MainActivity.this, "Error en el login", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
-                //OCULTAR ProgressBAr
+                // Ocultar ProgressBar
                 progressBar.setVisibility(View.GONE);
 
                 Log.e(TAG, "Fallo en la conexión: " + t.getMessage(), t);

@@ -88,6 +88,15 @@ public class EditarPerfilUsuario extends AppCompatActivity {
                     UserDetails userDetails = response.body();
                     if (userDetails != null && userDetails.getSub() != null) {
                         UserDetails.Sub sub = userDetails.getSub();
+
+                        // Guardar el ID del usuario en SharedPreferences
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("UserId", sub.get_id()); // Asegúrate de que `getUserId()` es el método correcto
+                        editor.apply();
+
+                        // Mostrar un Toast confirmando que el ID está guardado
+                        Toast.makeText(EditarPerfilUsuario.this, "ID del usuario guardado", Toast.LENGTH_SHORT).show();
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -118,6 +127,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
                 Log.e("PerfilUsuario", "Error de conexión: " + t.getMessage(), t);
@@ -125,7 +135,8 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             }
         });
     }
-    private void actualizarDatosUsuario(){
+
+    private void actualizarDatosUsuario() {
         String nombre = edtNombre.getText().toString();
         String apellido = edtApellido.getText().toString();
         String email = edtEmail.getText().toString();
@@ -134,16 +145,16 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         String fechaNacimiento = edtNacimiento.getText().toString();
         String caracterizacion = edtCaracterizacion.getText().toString();
 
-
-        //VERIFICAR LOS CAMPOS REQUERIDOS QUE ESTEN LLENOS
-        if(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty()){
-            Toast.makeText(this,"Campos Requeridos", Toast.LENGTH_SHORT).show();
+        // Verificar que los campos requeridos estén llenos
+        if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty()) {
+            Toast.makeText(this, "Campos requeridos", Toast.LENGTH_SHORT).show();
             return;
         }
 
         UserUpdate updatedUserDetails = new UserUpdate(
                 nombre, apellido, email, numIdentificacion, telefono, fechaNacimiento, caracterizacion
         );
+
         SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
         String token = sharedPreferences.getString("UserToken", null);
         String userId = sharedPreferences.getString("UserId", null);
@@ -160,7 +171,6 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             return;
         }
 
-
         ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
         Call<Void> call = apiService.updateUserProfile(userId, "Bearer " + token, updatedUserDetails);
         call.enqueue(new Callback<Void>() {
@@ -168,6 +178,8 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditarPerfilUsuario.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                    // Navegar o hacer cualquier otra acción después de actualizar los datos
+                    finish(); // Cierra la actividad actual
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
@@ -186,6 +198,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             }
         });
     }
+
 
 
 
