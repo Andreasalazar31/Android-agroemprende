@@ -1,4 +1,4 @@
-package com.example.interfazandroid;
+package com.example.interfazandroid.Usuario;
 
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
-import com.example.interfazandroid.Usuario.MenuUsuario;
-import com.example.interfazandroid.Usuario.PerfilUsuario;
+import com.example.interfazandroid.R;
 
 public class FormularioProyectoUsuario extends AppCompatActivity {
 

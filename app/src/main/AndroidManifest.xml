@@ -18,13 +18,16 @@
         android:theme="@style/Theme.InterfazAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".DetallesProyecto"
+            android:name=".Administrador.AdministradorRol"
+            android:exported="false" />
+        <activity
+            android:name=".Usuario.DetallesProyecto"
             android:exported="false" />
         <activity
             android:name=".MenuRegistro.CerrarSesion"
             android:exported="false" />
         <activity
-            android:name=".NotificacionesUsuario"
+            android:name=".Usuario.NotificacionesUsuario"
             android:exported="false" />
         <activity
             android:name=".Usuario.EditarPerfilUsuario"
@@ -36,7 +39,7 @@
             android:name=".Usuario.PerfilUsuario"
             android:exported="false" />
         <activity
-            android:name=".FormularioProyectoUsuario"
+            android:name=".Usuario.FormularioProyectoUsuario"
             android:exported="false" />
         <activity
             android:name=".Usuario.MenuUsuario"
