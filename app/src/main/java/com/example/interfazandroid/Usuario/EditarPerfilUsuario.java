@@ -35,8 +35,9 @@ import retrofit2.Response;
 public class EditarPerfilUsuario extends AppCompatActivity {
 
     private TextInputEditText edtNombre, edtApellido,edtEmail, edtNumIdentificacion,edtTelefono,edtNacimiento,edtCaracterizacion;
-    private Button btnguardardatos;
+    private Button btnguardardatos,btnEditEmail;
     private ApiService apiService;
+    private boolean isEmailEditable= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,18 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         edtNacimiento = findViewById(R.id.edtNacimiento);
         edtCaracterizacion = findViewById(R.id.edtCaracterizacion);
         btnguardardatos = findViewById(R.id.btnguardardatos);
+        btnEditEmail = findViewById(R.id.btnEditarEmail);
 
-        MostrarDatos();
         Toolbar();
-
+        /////BOTON EDITAR SOLO CORREO HABILITAR/////////////
+        btnEditEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isEmailEditable = !isEmailEditable;
+                edtEmail.setEnabled(isEmailEditable);
+                btnEditEmail.setText(isEmailEditable ? "editar":"ocultar");
+            }
+        });
         btnguardardatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +73,11 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         });
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        MostrarDatos();
     }
 
     private void MostrarDatos() {
@@ -137,24 +151,6 @@ public class EditarPerfilUsuario extends AppCompatActivity {
     }
 
     private void actualizarDatosUsuario() {
-        String nombre = edtNombre.getText().toString();
-        String apellido = edtApellido.getText().toString();
-        String email = edtEmail.getText().toString();
-        String numIdentificacion = edtNumIdentificacion.getText().toString();
-        String telefono = edtTelefono.getText().toString();
-        String fechaNacimiento = edtNacimiento.getText().toString();
-        String caracterizacion = edtCaracterizacion.getText().toString();
-
-        // Verificar que los campos requeridos estén llenos
-        if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty()) {
-            Toast.makeText(this, "Campos requeridos", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        UserUpdate updatedUserDetails = new UserUpdate(
-                nombre, apellido, email, numIdentificacion, telefono, fechaNacimiento, caracterizacion
-        );
-
         SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
         String token = sharedPreferences.getString("UserToken", null);
         String userId = sharedPreferences.getString("UserId", null);
@@ -171,14 +167,33 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             return;
         }
 
+        UserUpdate userUpdate = new UserUpdate();
+        String nombre = edtNombre.getText().toString();
+        String apellido = edtApellido.getText().toString();
+        String numIdentificacion = edtNumIdentificacion.getText().toString();
+        String telefono = edtTelefono.getText().toString();
+        String fechaNacimiento = edtNacimiento.getText().toString();
+        String caracterizacion = edtCaracterizacion.getText().toString();
+
+        userUpdate.setNombre(nombre);
+        userUpdate.setApellido(apellido);
+        userUpdate.setNumIdentificacion(numIdentificacion);
+        userUpdate.setTelefono(telefono);
+        userUpdate.setFechaNacimiento(fechaNacimiento);
+        userUpdate.setCaracterizacion(caracterizacion);
+
+        if (isEmailEditable) {
+            userUpdate.setEmail(edtEmail.getText().toString());
+        }
+
         ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
-        Call<Void> call = apiService.updateUserProfile(userId, "Bearer " + token, updatedUserDetails);
+        Call<Void> call = apiService.updateUserProfile(userId, "Bearer " + token, userUpdate);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditarPerfilUsuario.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
-                    // Navegar o hacer cualquier otra acción después de actualizar los datos
+                    setResult(RESULT_OK); // Establece el resultado que indica éxito
                     finish(); // Cierra la actividad actual
                 } else {
                     try {
@@ -198,6 +213,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             }
         });
     }
+
 
 
 

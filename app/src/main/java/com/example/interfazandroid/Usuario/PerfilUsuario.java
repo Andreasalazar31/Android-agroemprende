@@ -29,42 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilUsuario extends AppCompatActivity {
+    private static final int REQUEST_CODE_EDIT_PROFILE = 1;
 
-    private static final int REQUEST_CODE_GALLERY = 100;
     private ImageView imageView, editarusuario;
-    private Uri selectedImageUri;  // Variable para almacenar la URI seleccionada
-    private String imageName = "selected_image.jpg";  // Nombre del archivo donde se guardará la imagen
     private TextView tvNombre, tvEmail, tvTelefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
-        //////////////////////////////////TOOLBAR///////////////////////////////////////////////////
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ImageView icon1 = findViewById(R.id.icon1);
-        ImageView icon2 = findViewById(R.id.icon2);
-        ImageView icon3 = findViewById(R.id.icon3);
-
-        icon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navega a la vista deseada para icon2
-                Intent intent = new Intent(PerfilUsuario.this, MenuUsuario.class);
-                startActivity(intent);
-            }
-        });
-        icon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navega a la vista deseada para icon3
-                Intent intent = new Intent(PerfilUsuario.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        ////////////////////////////////////////////////////////////////////////////////////////////
 
         tvNombre = findViewById(R.id.tvNombre);
         tvEmail = findViewById(R.id.tvEmail);
@@ -72,17 +45,29 @@ public class PerfilUsuario extends AppCompatActivity {
         imageView = findViewById(R.id.imagenPerfil);
         editarusuario= findViewById(R.id.editarusuario);
 
-        fetchUserDetails();
-
-
         editarusuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PerfilUsuario.this, EditarPerfilUsuario.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_EDIT_PROFILE);
             }
         });
+        Toolbar();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchUserDetails();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == RESULT_OK) {
+            // Cuando se recibe un resultado exitoso de EditarPerfilUsuario, actualiza los detalles del usuario
+            fetchUserDetails();
+        }
+    }
+
 
 
     //////////MOSTRAR DATOS EN EL PERFIL/////////////////
@@ -120,6 +105,11 @@ public class PerfilUsuario extends AppCompatActivity {
                                 tvEmail.setText(sub.getEmail());
                                 tvTelefono.setText(sub.getTelefono());
                                 Log.d("PerfilUsuario", "UI actualizada con los datos del usuario");
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("UserName",sub.getNombre() + " "+ sub.getApellido());
+                                editor.putString("UserEmail", sub.getEmail());
+                                editor.putString("UserPhone", sub.getTelefono());
+                                editor.apply();
                             }
                         });
                     } else {
@@ -143,8 +133,34 @@ public class PerfilUsuario extends AppCompatActivity {
             }
         });
     }
+    private void Toolbar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon2 = findViewById(R.id.icon2);
+        ImageView icon3 = findViewById(R.id.icon3);
 
-
-
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilUsuario.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+        icon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilUsuario.this, MenuUsuario.class);
+                startActivity(intent);
+            }
+        });
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilUsuario.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 }

@@ -9,6 +9,8 @@ public class UserUpdate {
     private String fechaNacimiento;
     private String caracterizacion;
 
+    public UserUpdate() {
+    }
 
     public UserUpdate(String nombre, String apellido, String email, String numIdentificacion, String telefono, String fechaNacimiento, String caracterizacion) {
         this.nombre = nombre;
