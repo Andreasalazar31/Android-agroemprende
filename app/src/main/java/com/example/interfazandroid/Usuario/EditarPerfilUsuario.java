@@ -193,8 +193,18 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditarPerfilUsuario.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_OK); // Establece el resultado que indica éxito
-                    finish(); // Cierra la actividad actual
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("UserName", nombre + " " + apellido);
+                    editor.putString("UserEmail", isEmailEditable ? edtEmail.getText().toString() : edtEmail.getText().toString());
+                    editor.putString("UserPhone", telefono);
+                    editor.apply();
+
+                    // Navegar de vuelta a PerfilUsuario
+                    Intent intent = new Intent(EditarPerfilUsuario.this, PerfilUsuario.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
@@ -205,7 +215,6 @@ public class EditarPerfilUsuario extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e("EditarPerfilUsuario", "Error de conexión: " + t.getMessage(), t);

@@ -29,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilUsuario extends AppCompatActivity {
-    private static final int REQUEST_CODE_EDIT_PROFILE = 1;
 
     private ImageView imageView, editarusuario;
     private TextView tvNombre, tvEmail, tvTelefono;
@@ -49,7 +48,7 @@ public class PerfilUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PerfilUsuario.this, EditarPerfilUsuario.class);
-                startActivityForResult(intent, REQUEST_CODE_EDIT_PROFILE);
+                startActivity(intent);
             }
         });
         Toolbar();
@@ -58,16 +57,19 @@ public class PerfilUsuario extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fetchUserDetails();
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == RESULT_OK) {
-            // Cuando se recibe un resultado exitoso de EditarPerfilUsuario, actualiza los detalles del usuario
-            fetchUserDetails();
-        }
+        loadDataFromSharedPreferences();
     }
 
+    private void loadDataFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        String userName = sharedPreferences.getString("UserName", "");
+        String userEmail = sharedPreferences.getString("UserEmail", "");
+        String userPhone = sharedPreferences.getString("UserPhone", "");
+
+        tvNombre.setText(userName);
+        tvEmail.setText(userEmail);
+        tvTelefono.setText(userPhone);
+    }
 
 
     //////////MOSTRAR DATOS EN EL PERFIL/////////////////
