@@ -3,48 +3,43 @@ package com.example.interfazandroid.Usuario;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.WindowCompat;
-
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
-import com.example.interfazandroid.databinding.ActivityEditarPerfilUsuarioBinding;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
 import com.example.interfazandroid.modelApi.UserUpdate;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.io.IOException;
-import java.util.Calendar;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditarPerfilUsuario extends AppCompatActivity {
 
-    private TextInputEditText edtNombre, edtApellido,edtEmail, edtNumIdentificacion,edtTelefono,edtNacimiento,edtCaracterizacion;
-    private Button btnguardardatos,btnEditEmail;
+    private TextInputEditText edtNombre, edtApellido, edtEmail, edtNumIdentificacion, edtTelefono, edtNacimiento, edtCaracterizacion;
+    private Button btnguardardatos, btnEditEmail;
     private ApiService apiService;
-    private boolean isEmailEditable= false;
+    private boolean isEmailEditable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_editar_perfil_usuario);
 
+        initializeViews();
+        setupListeners();
+        setupToolbar();
+    }
+
+    private void initializeViews() {
         edtNombre = findViewById(R.id.edtNombre);
         edtApellido = findViewById(R.id.edtApellido);
         edtEmail = findViewById(R.id.edtEmail);
@@ -54,106 +49,28 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         edtCaracterizacion = findViewById(R.id.edtCaracterizacion);
         btnguardardatos = findViewById(R.id.btnguardardatos);
         btnEditEmail = findViewById(R.id.btnEditarEmail);
-
-        Toolbar();
-        /////BOTON EDITAR SOLO CORREO HABILITAR/////////////
-        btnEditEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isEmailEditable = !isEmailEditable;
-                edtEmail.setEnabled(isEmailEditable);
-                btnEditEmail.setText(isEmailEditable ? "editar":"ocultar");
-            }
-        });
-        btnguardardatos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                actualizarDatosUsuario();
-            }
-        });
-
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
     }
+
+    private void setupListeners() {
+        btnEditEmail.setOnClickListener(v -> toggleEmailEditable());
+        btnguardardatos.setOnClickListener(v -> actualizarDatosUsuario());
+    }
+
+    private void toggleEmailEditable() {
+        isEmailEditable = !isEmailEditable;
+        edtEmail.setEnabled(isEmailEditable);
+        btnEditEmail.setText(isEmailEditable ? "Ocultar" : "Editar");
+    }
+
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        MostrarDatos();
+        cargarDatosUsuario();
     }
 
-    private void MostrarDatos() {
+    private void cargarDatosUsuario() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
         String token = sharedPreferences.getString("UserToken", null);
-
-        if (token == null) {
-            Log.e("PerfilUsuario", "Token no encontrado");
-            Toast.makeText(this, "Token no encontrado", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Log.d("PerfilUsuario", "Token: " + token);
-        ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
-        Call<UserDetails> call = apiService.getUserDetails("Bearer " + token);
-
-        call.enqueue(new Callback<UserDetails>() {
-            @Override
-            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
-                Log.d("PerfilUsuario", "Código de respuesta: " + response.code());
-                if (response.isSuccessful()) {
-                    UserDetails userDetails = response.body();
-                    if (userDetails != null && userDetails.getSub() != null) {
-                        UserDetails.Sub sub = userDetails.getSub();
-
-                        // Guardar el ID del usuario en SharedPreferences
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("UserId", sub.get_id()); // Asegúrate de que `getUserId()` es el método correcto
-                        editor.apply();
-
-                        // Mostrar un Toast confirmando que el ID está guardado
-                        Toast.makeText(EditarPerfilUsuario.this, "ID del usuario guardado", Toast.LENGTH_SHORT).show();
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                edtNombre.setText(sub.getNombre());
-                                edtApellido.setText(sub.getApellido());
-                                edtEmail.setText(sub.getEmail());
-                                edtNumIdentificacion.setText(sub.getNumIdentificacion());
-                                edtTelefono.setText(sub.getTelefono());
-                                edtNacimiento.setText(sub.getFechaNacimieto());
-                                edtCaracterizacion.setText(sub.getCaracterizacion());
-                                Log.d("PerfilUsuario", "UI actualizada con los datos del usuario");
-                            }
-                        });
-                    } else {
-                        Log.e("PerfilUsuario", "UserDetails o Sub es null");
-                    }
-                } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e("PerfilUsuario", "Error al obtener detalles del usuario. Código: " + response.code() + ", Cuerpo: " + errorBody);
-                        if (response.code() == 503) {
-                            Toast.makeText(EditarPerfilUsuario.this, "Servidor no disponible. Inténtalo más tarde.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(EditarPerfilUsuario.this, "Error al obtener detalles de usuario: " + response.code(), Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (IOException e) {
-                        Log.e("PerfilUsuario", "Error al leer el cuerpo del error", e);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserDetails> call, Throwable t) {
-                Log.e("PerfilUsuario", "Error de conexión: " + t.getMessage(), t);
-                Toast.makeText(EditarPerfilUsuario.this, "Falló la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void actualizarDatosUsuario() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
-        String token = sharedPreferences.getString("UserToken", null);
-        String userId = sharedPreferences.getString("UserId", null);
 
         if (token == null) {
             Log.e("EditarPerfilUsuario", "Token no encontrado");
@@ -161,48 +78,61 @@ public class EditarPerfilUsuario extends AppCompatActivity {
             return;
         }
 
-        if (userId == null) {
-            Log.e("EditarPerfilUsuario", "UserId no encontrado");
-            Toast.makeText(this, "UserId no encontrado", Toast.LENGTH_SHORT).show();
+        apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
+        Call<UserDetails> call = apiService.getUserDetails("Bearer " + token);
+
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getSub() != null) {
+                    UserDetails.Sub sub = response.body().getSub();
+                    runOnUiThread(() -> mostrarDatosEnUI(sub));
+                } else {
+                    handleApiError(response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+                Log.e("EditarPerfilUsuario", "Error de conexión: " + t.getMessage(), t);
+                Toast.makeText(EditarPerfilUsuario.this, "Falló la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void mostrarDatosEnUI(UserDetails.Sub sub) {
+        edtNombre.setText(sub.getNombre());
+        edtApellido.setText(sub.getApellido());
+        edtEmail.setText(sub.getEmail());
+        edtNumIdentificacion.setText(sub.getNumIdentificacion());
+        edtTelefono.setText(sub.getTelefono());
+        edtNacimiento.setText(sub.getFechaNacimieto());
+        edtCaracterizacion.setText(sub.getCaracterizacion());
+    }
+
+    private void actualizarDatosUsuario() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        String token = sharedPreferences.getString("UserToken", null);
+        String userId = sharedPreferences.getString("UserId", null);
+
+        if (token == null || userId == null) {
+            Toast.makeText(this, "Información de usuario no encontrada", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        UserUpdate userUpdate = new UserUpdate();
-        String nombre = edtNombre.getText().toString();
-        String apellido = edtApellido.getText().toString();
-        String numIdentificacion = edtNumIdentificacion.getText().toString();
-        String telefono = edtTelefono.getText().toString();
-        String fechaNacimiento = edtNacimiento.getText().toString();
-        String caracterizacion = edtCaracterizacion.getText().toString();
+        UserUpdate userUpdate = createUserUpdateObject();
 
-        userUpdate.setNombre(nombre);
-        userUpdate.setApellido(apellido);
-        userUpdate.setNumIdentificacion(numIdentificacion);
-        userUpdate.setTelefono(telefono);
-        userUpdate.setFechaNacimiento(fechaNacimiento);
-        userUpdate.setCaracterizacion(caracterizacion);
-
-        if (isEmailEditable) {
-            userUpdate.setEmail(edtEmail.getText().toString());
-        }
-
-        ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
+        apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
         Call<Void> call = apiService.updateUserProfile(userId, "Bearer " + token, userUpdate);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    updateSharedPreferences(userUpdate);
                     Toast.makeText(EditarPerfilUsuario.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_OK); // Establece el resultado que indica éxito
-                    finish(); // Cierra la actividad actual
+                    finish(); // Volver a PerfilUsuario
                 } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e("EditarPerfilUsuario", "Error al actualizar datos del usuario. Código: " + response.code() + ", Cuerpo: " + errorBody);
-                        Toast.makeText(EditarPerfilUsuario.this, "Error al actualizar datos: " + response.code(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        Log.e("EditarPerfilUsuario", "Error al leer el cuerpo del error", e);
-                    }
+                    handleApiError(response);
                 }
             }
 
@@ -214,41 +144,52 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         });
     }
 
+    private UserUpdate createUserUpdateObject() {
+        UserUpdate userUpdate = new UserUpdate();
+        userUpdate.setNombre(edtNombre.getText().toString());
+        userUpdate.setApellido(edtApellido.getText().toString());
+        userUpdate.setNumIdentificacion(edtNumIdentificacion.getText().toString());
+        userUpdate.setTelefono(edtTelefono.getText().toString());
+        userUpdate.setFechaNacimiento(edtNacimiento.getText().toString());
+        userUpdate.setCaracterizacion(edtCaracterizacion.getText().toString());
+        if (isEmailEditable) {
+            userUpdate.setEmail(edtEmail.getText().toString());
+        }
+        return userUpdate;
+    }
 
+    private void updateSharedPreferences(UserUpdate updatedUser) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("UserName", updatedUser.getNombre() + " " + updatedUser.getApellido());
+        if (isEmailEditable) {
+            editor.putString("UserEmail", updatedUser.getEmail());
+        }
+        editor.putString("UserPhone", updatedUser.getTelefono());
+        editor.putLong("LastUpdateTime", System.currentTimeMillis());
+        editor.apply();
+    }
 
+    private void handleApiError(Response<?> response) {
+        try {
+            String errorBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
+            Log.e("EditarPerfilUsuario", "Error API. Código: " + response.code() + ", Cuerpo: " + errorBody);
+            Toast.makeText(this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e("EditarPerfilUsuario", "Error al leer el cuerpo del error", e);
+        }
+    }
 
-
-    private void Toolbar(){
+    private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ImageView icon1 = findViewById(R.id.icon1);
         ImageView icon2 = findViewById(R.id.icon2);
         ImageView icon3 = findViewById(R.id.icon3);
 
-        icon1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfilUsuario.this, PerfilUsuario.class);
-                startActivity(intent);
-            }
-        });
-        icon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfilUsuario.this, MenuUsuario.class);
-                startActivity(intent);
-            }
-        });
-        icon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfilUsuario.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        icon1.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, PerfilUsuario.class)));
+        icon2.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, MenuUsuario.class)));
+        icon3.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, MainActivity.class)));
     }
-
 }
-
-

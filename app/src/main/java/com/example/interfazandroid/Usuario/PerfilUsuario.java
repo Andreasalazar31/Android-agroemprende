@@ -29,10 +29,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilUsuario extends AppCompatActivity {
-    private static final int REQUEST_CODE_EDIT_PROFILE = 1;
 
     private ImageView imageView, editarusuario;
     private TextView tvNombre, tvEmail, tvTelefono;
+    private static final long CACHE_DURATION = 5 * 60 * 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class PerfilUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PerfilUsuario.this, EditarPerfilUsuario.class);
-                startActivityForResult(intent, REQUEST_CODE_EDIT_PROFILE);
+                startActivity(intent);
             }
         });
         Toolbar();
@@ -57,17 +58,30 @@ public class PerfilUsuario extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchUserDetails();
+        updateUserInterface();
+
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_EDIT_PROFILE && resultCode == RESULT_OK) {
-            // Cuando se recibe un resultado exitoso de EditarPerfilUsuario, actualiza los detalles del usuario
+
+    private  void updateUserInterface(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp",MODE_PRIVATE);
+        long lasUpdateTime = sharedPreferences.getLong("LastUpdateTime",0);
+        boolean shouldFetchFromApi = System.currentTimeMillis() - lasUpdateTime > CACHE_DURATION;
+
+        if (shouldFetchFromApi) {
             fetchUserDetails();
+        }else{
+            loadDataFromSharedPreferences();
         }
     }
 
+    private void loadDataFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        String userName = sharedPreferences.getString("UserName", "");
+        String userEmail = sharedPreferences.getString("UserEmail", "");
+        String userPhone = sharedPreferences.getString("UserPhone", "");
+
+        updateUI(userName,userEmail,userPhone);
+    }
 
 
     //////////MOSTRAR DATOS EN EL PERFIL/////////////////
@@ -78,6 +92,7 @@ public class PerfilUsuario extends AppCompatActivity {
         if (token == null) {
             Log.e("PerfilUsuario", "Token no encontrado");
             Toast.makeText(this, "Token no encontrado", Toast.LENGTH_SHORT).show();
+            loadDataFromSharedPreferences();
             return;
         }
 
@@ -92,37 +107,17 @@ public class PerfilUsuario extends AppCompatActivity {
                 Log.d("PerfilUsuario", "Código de respuesta: " + response.code());
                 if (response.isSuccessful()) {
                     UserDetails userDetails = response.body();
-                    if(userDetails != null && userDetails.getSub() != null){
+                    if(userDetails != null && userDetails.getSub() != null) {
                         UserDetails.Sub sub = userDetails.getSub();
-                        Log.d("PerfilUsuario", "Nombre: " + sub.getNombre());
-                        Log.d("PerfilUsuario", "Email: " + sub.getEmail());
-                        Log.d("PerfilUsuario", "Teléfono: " + sub.getTelefono());
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvNombre.setText(sub.getNombre() + " " + sub.getApellido());
-                                tvEmail.setText(sub.getEmail());
-                                tvTelefono.setText(sub.getTelefono());
-                                Log.d("PerfilUsuario", "UI actualizada con los datos del usuario");
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("UserName",sub.getNombre() + " "+ sub.getApellido());
-                                editor.putString("UserEmail", sub.getEmail());
-                                editor.putString("UserPhone", sub.getTelefono());
-                                editor.apply();
-                            }
-                        });
+                        updateSharedPreferences(sub);
+                        updateUI(sub.getNombre() + " " + sub.getApellido(), sub.getEmail(), sub.getTelefono());
                     } else {
                         Log.e("PerfilUsuario", "UserDetails o Sub es null");
+                        loadDataFromSharedPreferences();
                     }
                 } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e("PerfilUsuario", "Error al obtener detalles del usuario. Código: " + response.code() + ", Cuerpo: " + errorBody);
-                        Toast.makeText(PerfilUsuario.this, "Error al obtener detalles de usuario: " + response.code(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e){
-                        Log.e("PerfilUsuario", "Error al leer el cuerpo del error", e);
-                    }
+                    handleApiError(response);
+                    loadDataFromSharedPreferences();
                 }
             }
 
@@ -130,9 +125,35 @@ public class PerfilUsuario extends AppCompatActivity {
             public void onFailure(Call<UserDetails> call, Throwable t) {
                 Log.e("PerfilUsuario", "Error de conexión: " + t.getMessage(), t);
                 Toast.makeText(PerfilUsuario.this, "Falló la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                loadDataFromSharedPreferences();
             }
         });
     }
+    private void updateSharedPreferences(UserDetails.Sub sub) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("UserName", sub.getNombre() + " " + sub.getApellido());
+        editor.putString("UserEmail", sub.getEmail());
+        editor.putString("UserPhone", sub.getTelefono());
+        editor.putLong("LastUpdateTime", System.currentTimeMillis());
+        editor.apply();
+    }
+
+    private void updateUI(String name, String email, String phone) {
+        tvNombre.setText(name);
+        tvEmail.setText(email);
+        tvTelefono.setText(phone);
+    }
+    private void handleApiError(Response<UserDetails> response) {
+        try {
+            String errorBody = response.errorBody().string();
+            Log.e("PerfilUsuario", "Error al obtener detalles del usuario. Código: " + response.code() + ", Cuerpo: " + errorBody);
+            Toast.makeText(PerfilUsuario.this, "Error al obtener detalles de usuario: " + response.code(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e("PerfilUsuario", "Error al leer el cuerpo del error", e);
+        }
+    }
+
     private void Toolbar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
