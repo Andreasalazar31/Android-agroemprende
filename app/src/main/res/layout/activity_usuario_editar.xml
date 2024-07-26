@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsuarioEditar">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="314dp"
+        android:layout_height="539dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="70dp"
+        app:cardCornerRadius="23dp">
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-217dp"
+            android:text="Editar"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="106dp"
+            android:background="@drawable/text_background"
+            android:hint="Nombre"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="179dp"
+            android:background="@drawable/text_background"
+            android:hint="Apellido"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/text_background"
+            android:ems="10"
+            android:hint="Fecha de nacimiento"
+            android:inputType="date"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="320dp"
+            android:background="@drawable/text_background"
+            android:ems="10"
+            android:hint="Telefono"
+            android:inputType="phone"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="389dp"
+            android:background="@drawable/text_background"
+            android:ems="10"
+            android:hint="Correo electronico"
+            android:inputType="textEmailAddress"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="459dp"
+            android:background="@drawable/text_background"
+            android:hint="Numero de identificacion"
+            android:padding="14dp"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:elevation="23dp"
+        android:layout_marginTop="633dp"
+        android:layout_marginLeft="117dp"
+        android:text="Guardar" />
+
+</RelativeLayout>
