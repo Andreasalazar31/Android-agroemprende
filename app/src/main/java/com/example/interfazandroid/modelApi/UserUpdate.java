@@ -7,19 +7,19 @@ public class UserUpdate {
     private String numIdentificacion;
     private String telefono;
     private String fechaNacimiento;
-    private String caracterizacion;
+
 
     public UserUpdate() {
     }
 
-    public UserUpdate(String nombre, String apellido, String email, String numIdentificacion, String telefono, String fechaNacimiento, String caracterizacion) {
+    public UserUpdate(String nombre, String apellido, String email, String numIdentificacion, String telefono, String fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.numIdentificacion = numIdentificacion;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
-        this.caracterizacion = caracterizacion;
+
 
     }
 
@@ -71,12 +71,6 @@ public class UserUpdate {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getCaracterizacion() {
-        return caracterizacion;
-    }
 
-    public void setCaracterizacion(String caracterizacion) {
-        this.caracterizacion = caracterizacion;
-    }
 
 }

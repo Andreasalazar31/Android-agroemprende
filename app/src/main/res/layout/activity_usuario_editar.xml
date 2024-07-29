@@ -8,10 +8,11 @@
     tools:context=".UsuarioEditar">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="314dp"
-        android:layout_height="539dp"
+        android:layout_width="326dp"
+        android:layout_height="536dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="70dp"
+        android:paddingTop="10dp"
         app:cardCornerRadius="23dp">
 
         <TextView
@@ -25,6 +26,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edtNombre"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
@@ -37,6 +39,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edtApellido"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
@@ -48,8 +51,8 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-
         <EditText
+            android:id="@+id/edtNacimiento"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
@@ -64,6 +67,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edtTelefono"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
@@ -77,42 +81,56 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-
         <EditText
+            android:id="@+id/edtNumIdentificacion"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="389dp"
             android:background="@drawable/text_background"
             android:ems="10"
-            android:hint="Correo electronico"
+            android:hint="Numero de identificacion"
             android:inputType="textEmailAddress"
             android:padding="14dp"
             android:textColor="#555555"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-
-        <EditText
-            android:layout_width="280dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
-            android:layout_marginTop="459dp"
-            android:background="@drawable/text_background"
-            android:hint="Numero de identificacion"
-            android:padding="14dp"
-            android:textColor="#555555"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="459dp">
 
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/btnEditarEmail"
+                android:background="@drawable/text_background"
+                android:hint="Correo electronico"
+                android:padding="14dp"
+                android:textColor="#555555"
+                android:textSize="18sp"
+                android:textStyle="bold" /> <!-- Margen ajustado -->
+
+            <Button
+                android:id="@+id/btnEditarEmail"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/black"
+                android:layout_marginRight="10dp"
+                android:padding="2dp"
+                android:text="Editar" />
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-
-
-
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnguardardatos"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:elevation="23dp"

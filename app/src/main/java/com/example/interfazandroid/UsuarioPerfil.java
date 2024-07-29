@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
-import com.example.interfazandroid.Usuario.EditarPerfilUsuario;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
@@ -47,7 +46,7 @@ public class UsuarioPerfil extends AppCompatActivity {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UsuarioPerfil.this, EditarPerfilUsuario.class);
+                Intent intent = new Intent(UsuarioPerfil.this, UsuarioEditar.class);
                 startActivity(intent);
             }
         });
