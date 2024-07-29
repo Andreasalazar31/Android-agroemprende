@@ -18,16 +18,26 @@
         android:theme="@style/Theme.InterfazAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".Registro"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".InicioDeSesion"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioFormularioProyecto"
+            android:exported="false" />
+        <activity
             android:name=".ProyectoRevisadoUsuario"
             android:exported="false" />
-
-
-
         <activity
             android:name=".UsuarioNotificaciones"
-            android:exported="false"/>
-
-
+            android:exported="false" />
         <activity
             android:name=".UsuarioMenu"
             android:exported="false" />
@@ -36,7 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".UsuarioPerfil"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".Administrador.AdministradorRol"
             android:exported="false" />
@@ -63,13 +74,7 @@
             android:exported="false" />
         <activity
             android:name=".MenuRegistro.MainActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>
