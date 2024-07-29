@@ -58,8 +58,9 @@
             android:layout_marginTop="250dp"
             android:background="@drawable/text_background"
             android:ems="10"
+            android:inputType="textEmailAddress"
             android:hint="Correo Electronico"
-            android:inputType="date"
+
             android:padding="14dp"
             android:textColor="#555555"
             android:textSize="18sp"
@@ -103,6 +104,7 @@
             android:background="@drawable/text_background"
             android:hint="Confirmar Contraseña"
             android:padding="14dp"
+            android:inputType="textPassword"
             android:textColor="#555555"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -133,4 +135,6 @@
         android:text="Inicia Sesion"
         android:textSize="15sp"
         android:textStyle="bold" />
+
+
 </RelativeLayout>
