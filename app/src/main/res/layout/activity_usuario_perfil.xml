@@ -26,7 +26,7 @@
         android:layout_width="315dp"
         android:layout_height="530dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="180dp"
         app:cardCornerRadius="23dp">
 
         <ImageButton
@@ -110,12 +110,22 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="918dp"
-        android:layout_height="320dp"
+        android:layout_width="998dp"
+        android:layout_height="460dp"
         android:layout_marginLeft="-93dp"
         android:layout_marginTop="-55dp"
         app:srcCompat="@drawable/img" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="184dp"
+        android:layout_height="134dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="129dp"
+        android:text="Perfil"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
