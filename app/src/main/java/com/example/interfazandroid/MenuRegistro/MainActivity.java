@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.interfazandroid.R;
+import com.example.interfazandroid.Registro;
 import com.example.interfazandroid.UsuarioMenu;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         registrarse.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, Register.class);
+            Intent intent = new Intent(MainActivity.this, Registro.class);
             startActivity(intent);
         });
 
