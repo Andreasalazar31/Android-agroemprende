@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
+import com.example.interfazandroid.UsuarioMenu;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
@@ -171,7 +172,7 @@ public class PerfilUsuario extends AppCompatActivity {
         icon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PerfilUsuario.this, MenuUsuario.class);
+                Intent intent = new Intent(PerfilUsuario.this, UsuarioMenu.class);
                 startActivity(intent);
             }
         });

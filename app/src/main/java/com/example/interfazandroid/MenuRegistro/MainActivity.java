@@ -15,8 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.interfazandroid.R;
-import com.example.interfazandroid.Usuario.MenuUsuario;
-import com.example.interfazandroid.Usuario.PerfilUsuario;
+import com.example.interfazandroid.UsuarioMenu;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.Token;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        Intent intent = new Intent(MainActivity.this, PerfilUsuario.class);
+        Intent intent = new Intent(MainActivity.this, UsuarioMenu.class);
         startActivity(intent);
         finish(); // Cierra la actividad de login
     }

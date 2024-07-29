@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
+import com.example.interfazandroid.UsuarioMenu;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
@@ -189,7 +190,7 @@ public class EditarPerfilUsuario extends AppCompatActivity {
         ImageView icon3 = findViewById(R.id.icon3);
 
         icon1.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, PerfilUsuario.class)));
-        icon2.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, MenuUsuario.class)));
+        icon2.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, UsuarioMenu.class)));
         icon3.setOnClickListener(v -> startActivity(new Intent(EditarPerfilUsuario.this, MainActivity.class)));
     }
 }

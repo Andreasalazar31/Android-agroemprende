@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
+import com.example.interfazandroid.UsuarioMenu;
 
 public class FormularioProyectoUsuario extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class FormularioProyectoUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navega a la vista deseada para icon2
-                Intent intent = new Intent(FormularioProyectoUsuario.this, MenuUsuario.class);
+                Intent intent = new Intent(FormularioProyectoUsuario.this, UsuarioMenu.class);
                 startActivity(intent);
             }
         });

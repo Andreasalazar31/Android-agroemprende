@@ -1,12 +1,16 @@
 package com.example.interfazandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.interfazandroid.MenuRegistro.MainActivity;
+import com.example.interfazandroid.Usuario.PerfilUsuario;
 
 public class UsuarioMenu extends AppCompatActivity {
 
@@ -15,10 +19,30 @@ public class UsuarioMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_usuario_menu);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        Toolbar();
+
+    }
+    private void Toolbar(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView icon1 = findViewById(R.id.icon1);
+        ImageView icon2 = findViewById(R.id.icon2);
+        ImageView icon3 = findViewById(R.id.icon3);
+
+        icon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UsuarioMenu.this, PerfilUsuario.class);
+                startActivity(intent);
+            }
+        });
+
+        icon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UsuarioMenu.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

@@ -30,7 +30,7 @@
         app:cardCornerRadius="23dp">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="233dp"
@@ -84,6 +84,7 @@
             android:text="Telefono:"/>
 
         <TextView
+            android:id="@+id/tvTelefono"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="416dp"

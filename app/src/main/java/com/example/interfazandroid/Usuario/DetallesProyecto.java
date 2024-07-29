@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
 import com.example.interfazandroid.R;
+import com.example.interfazandroid.UsuarioMenu;
 
 public class DetallesProyecto extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class DetallesProyecto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navega a la vista deseada para icon2
-                Intent intent = new Intent(DetallesProyecto.this, MenuUsuario.class);
+                Intent intent = new Intent(DetallesProyecto.this, UsuarioMenu.class);
                 startActivity(intent);
             }
         });

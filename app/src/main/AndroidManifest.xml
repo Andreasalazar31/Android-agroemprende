@@ -21,12 +21,9 @@
             android:name=".ProyectoRevisadoUsuario"
             android:exported="false" />
 
-
-
         <activity
             android:name=".UsuarioNotificaciones"
             android:exported="false"/>
-
 
         <activity
             android:name=".UsuarioMenu"
