@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.interfazandroid.MenuRegistro.MainActivity;
-import com.example.interfazandroid.Usuario.PerfilUsuario;
 
 public class UsuarioMenu extends AppCompatActivity {
 
@@ -32,7 +31,7 @@ public class UsuarioMenu extends AppCompatActivity {
         icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UsuarioMenu.this, PerfilUsuario.class);
+                Intent intent = new Intent(UsuarioMenu.this, UsuarioPerfil.class);
                 startActivity(intent);
             }
         });

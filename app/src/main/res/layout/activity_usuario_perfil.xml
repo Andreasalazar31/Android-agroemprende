@@ -126,6 +126,12 @@
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
 
 
 </RelativeLayout>

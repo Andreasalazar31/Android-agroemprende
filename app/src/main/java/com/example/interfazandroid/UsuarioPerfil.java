@@ -1,13 +1,8 @@
 package com.example.interfazandroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.interfazandroid.MenuRegistro.MainActivity;
+import com.example.interfazandroid.Usuario.EditarPerfilUsuario;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.UserDetails;
@@ -28,30 +27,31 @@ import retrofit2.Response;
 
 public class UsuarioPerfil extends AppCompatActivity {
 
-    private TextView tvNombre, tvEmail, tvTelefono;
+    private ImageView imageView, editarusuario;
     private ImageButton btnEditar;
+    private TextView tvNombre, tvEmail, tvTelefono;
     private static final long CACHE_DURATION = 5 * 60 * 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_usuario_perfil);
 
-        Toolbar();
         tvNombre = findViewById(R.id.tvNombre);
         tvEmail = findViewById(R.id.tvEmail);
         tvTelefono = findViewById(R.id.tvTelefono);
-        btnEditar = findViewById(R.id.btnEditar);
+
+        btnEditar= findViewById(R.id.btnEditar);
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Crear un Intent para iniciar AnotherActivity
-                Intent intent = new Intent(UsuarioPerfil.this,      UsuarioEditar.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(UsuarioPerfil.this, EditarPerfilUsuario.class);
                 startActivity(intent);
             }
         });
+        Toolbar();
     }
     @Override
     protected void onResume() {
@@ -151,7 +151,8 @@ public class UsuarioPerfil extends AppCompatActivity {
             Log.e("PerfilUsuario", "Error al leer el cuerpo del error", e);
         }
     }
-    private void Toolbar() {
+
+    private void Toolbar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ImageView icon1 = findViewById(R.id.icon1);
@@ -161,14 +162,14 @@ public class UsuarioPerfil extends AppCompatActivity {
         icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UsuarioPerfil.this, UsuarioEditar.class);
+                Intent intent = new Intent(UsuarioPerfil.this, UsuarioPerfil.class);
                 startActivity(intent);
             }
         });
         icon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UsuarioPerfil.this, UsuarioPerfil.class);
+                Intent intent = new Intent(UsuarioPerfil.this, UsuarioMenu.class);
                 startActivity(intent);
             }
         });
@@ -180,4 +181,5 @@ public class UsuarioPerfil extends AppCompatActivity {
             }
         });
     }
+
 }
