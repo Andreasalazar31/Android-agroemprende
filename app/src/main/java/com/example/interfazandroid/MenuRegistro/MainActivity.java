@@ -20,6 +20,7 @@ import com.example.interfazandroid.UsuarioMenu;
 import com.example.interfazandroid.modelApi.ApiLogin;
 import com.example.interfazandroid.modelApi.ApiService;
 import com.example.interfazandroid.modelApi.Token;
+import com.example.interfazandroid.modelApi.UserDetails;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
@@ -68,12 +69,36 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("UserId", userId);
         editor.apply();
+        Log.d("GuardarIdUsuario", "ID del usuario guardado: " + userId);
     }
 
     private void startMainActivity() {
         Intent intent = new Intent(MainActivity.this, UsuarioMenu.class);
         startActivity(intent);
         finish(); // Cierra la actividad de login
+    }
+
+    private void obtenerDetallesUsuario(String token) {
+        ApiService apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
+
+        Call<UserDetails> call = apiService.getUserDetails("Bearer " + token);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
+                if (response.isSuccessful()) {
+                    UserDetails userDetails = response.body();
+                    if (userDetails != null && userDetails.getSub() != null) {
+                        String userId = userDetails.getSub().get_id();
+                        saveUserId(userId); // Guardar ID en SharedPreferences
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDetails> call, Throwable t) {
+                Log.e(TAG, "Fallo en la llamada a la API para obtener detalles del usuario", t);
+            }
+        });
     }
 
     private void performLogin() {
@@ -114,11 +139,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Token recibido: " + token.getToken());
                         saveToken(token.getToken());
 
-                        // Si el token también incluye un ID de usuario, guárdalo
-                        String userId = token.getUserId(); // Asegúrate de que tu modelo Token tenga este campo
-                        if (userId != null) {
-                            saveUserId(userId);
-                        }
+                        // Obtener detalles del usuario usando el token
+                        obtenerDetallesUsuario(token.getToken());
 
                         Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
                         startMainActivity();

@@ -11,7 +11,7 @@
         android:layout_width="326dp"
         android:layout_height="536dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:paddingTop="10dp"
         app:cardCornerRadius="23dp">
 
@@ -134,7 +134,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:elevation="23dp"
-        android:layout_marginTop="633dp"
+        android:layout_marginTop="650dp"
         android:layout_marginLeft="117dp"
         android:text="Guardar" />
 

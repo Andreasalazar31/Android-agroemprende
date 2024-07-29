@@ -14,7 +14,7 @@ public class UserDetails {
         private String email;
         private String numIdentificacion;
         private String telefono;
-        private String fechaNacimieto;
+        private String fechaNacimiento;
         private String caracterizacion;
         private String contrasena;
         private String role;
@@ -68,12 +68,12 @@ public class UserDetails {
             this.telefono = telefono;
         }
 
-        public String getFechaNacimieto() {
-            return fechaNacimieto;
+        public String getFechaNacimiento() {
+            return fechaNacimiento;
         }
 
-        public void setFechaNacimieto(String fechaNacimieto) {
-            this.fechaNacimieto = fechaNacimieto;
+        public void setFechaNacimiento(String fechaNacimiento) {
+            this.fechaNacimiento = fechaNacimiento;
         }
 
         public String getCaracterizacion() {

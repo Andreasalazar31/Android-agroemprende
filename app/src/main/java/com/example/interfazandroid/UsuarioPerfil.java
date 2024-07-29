@@ -175,10 +175,19 @@ public class UsuarioPerfil extends AppCompatActivity {
         icon3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearSharedPreferences();
                 Intent intent = new Intent(UsuarioPerfil.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
+    private void clearSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Borra todas las preferencias
+        editor.apply();
+    }
+
 
 }
