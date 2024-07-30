@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="home"
-        android:icon="@drawable/eliminarusuario"
-
-        />
+        android:title="Home"
+        android:icon="@drawable/eliminarusuario" />
     <item
-        android:id="@+id/hom"
-        android:title="hva"
-        android:icon="@drawable/eliminarusuario"
-
-        />
+        android:id="@+id/projects"
+        android:title="Proyectos"
+        android:icon="@drawable/eliminarusuario" />
     <item
-        android:id="@+id/hoe"
-        android:title="campesino"
-        android:icon="@drawable/eliminarusuario"
-
-        />
+        android:id="@+id/profile"
+        android:title="Perfil"
+        android:icon="@drawable/eliminarusuario" />
+    <item
+        android:id="@+id/logout"
+        android:title="Cerrar sesión"
+        android:icon="@drawable/eliminarusuario" />
 </menu>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,38 +9,42 @@
     android:fitsSystemWindows="true"
     tools:context=".UsuarioMenu">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="62dp"
-        android:layout_height="63dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:srcCompat="@drawable/notificacion"
-        tools:layout_editor_absoluteX="333dp"
-        tools:layout_editor_absoluteY="16dp" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="330dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="23dp"
+        app:srcCompat="@drawable/img_4" />
 
     <TextView
         android:id="@+id/tvNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="118dp"
         android:layout_marginBottom="57dp"
         android:text="Agro Emprende"
         android:textSize="22sp"
         android:textStyle="bold" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_alignParentBottom="true"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:srcCompat="@drawable/notificaciones" />
+
+</RelativeLayout>
