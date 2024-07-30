@@ -72,6 +72,28 @@ public class UsuarioEditar extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         cargarDatosUsuario();
+        loadDataFromSharedPreferences();
+    }
+
+    private void loadDataFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        String userName = sharedPreferences.getString("UserName", "");
+        String userEmail = sharedPreferences.getString("UserEmail", "");
+        String userPhone = sharedPreferences.getString("UserPhone", "");
+        String userNumIdentificacion = sharedPreferences.getString("UserNumIdentificacion", "");
+        String userBirthDate = sharedPreferences.getString("UserBirthDate", "");
+
+        if (!userName.isEmpty()) {
+            String[] nameParts = userName.split(" ");
+            if (nameParts.length >= 2) {
+                edtNombre.setText(nameParts[0]);
+                edtApellido.setText(nameParts[1]);
+            }
+        }
+        edtEmail.setText(userEmail);
+        edtTelefono.setText(userPhone);
+        edtNumIdentificacion.setText(userNumIdentificacion);
+        edtNacimiento.setText(userBirthDate);
     }
 
     private void showUserIdToast() {
@@ -79,7 +101,7 @@ public class UsuarioEditar extends AppCompatActivity {
         String userId = sharedPreferences.getString("UserId", null);
 
         if (userId != null) {
-            Toast.makeText(this, "ID del usuario guardado: " + userId, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "ID del usuario guardado: " + userId, Toast.LENGTH_SHORT).show();
             Log.d("UsuarioEditar", "ID del usuario recuperado: " + userId);
         } else {
             Toast.makeText(this, "ID del usuario no encontrado", Toast.LENGTH_SHORT).show();
@@ -139,7 +161,11 @@ public class UsuarioEditar extends AppCompatActivity {
         if (edtEmail != null && sub.getEmail() != null) edtEmail.setText(sub.getEmail());
         if (edtNumIdentificacion != null && sub.getNumIdentificacion() != null) edtNumIdentificacion.setText(sub.getNumIdentificacion());
         if (edtTelefono != null && sub.getTelefono() != null) edtTelefono.setText(sub.getTelefono());
-        if (edtNacimiento != null && sub.getFechaNacimiento() != null) edtNacimiento.setText(sub.getFechaNacimiento());
+        if (edtNacimiento != null && sub.getFechaNacimiento() != null) {
+            // Extrae la fecha en el formato deseado
+            String fechaNacimiento = sub.getFechaNacimiento().substring(0, 10);
+            edtNacimiento.setText(fechaNacimiento);
+        }
         if (edtCaracterizacion != null && sub.getCaracterizacion() != null) edtCaracterizacion.setText(sub.getCaracterizacion());
     }
 
@@ -149,7 +175,7 @@ public class UsuarioEditar extends AppCompatActivity {
         String userId = sharedPreferences.getString("UserId", null);
 
         if (token == null || userId == null) {
-            Toast.makeText(this, "Información de usuario no encontrada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Información de usuario no encontrado", Toast.LENGTH_SHORT).show();
             Log.e("ActualizarDatosUsuario", "Token o ID de usuario no encontrado");
             return;
         }
@@ -202,6 +228,9 @@ public class UsuarioEditar extends AppCompatActivity {
             editor.putString("UserEmail", updatedUser.getEmail());
         }
         editor.putString("UserPhone", updatedUser.getTelefono());
+        editor.putString("UserNumIdentificacion", updatedUser.getNumIdentificacion());
+        editor.putString("UserBirthDate", updatedUser.getFechaNacimiento());
+        editor.putLong("LastUpdateTime", System.currentTimeMillis());
         editor.apply();
     }
 

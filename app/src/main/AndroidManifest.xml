@@ -17,17 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InterfazAndroid"
         tools:targetApi="31">
-        <activity android:name=".Registro"
+        <activity
+            android:name=".UsuarioNuevoProyecto"
             android:exported="false" />
-
+        <activity
+            android:name=".Registro"
+            android:exported="false" />
         <activity
             android:name=".ProyectoRevisadoUsuario"
             android:exported="false" />
-
         <activity
             android:name=".UsuarioNotificaciones"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".UsuarioMenu"
             android:exported="false" />
@@ -63,7 +64,7 @@
             android:exported="false" />
         <activity
             android:name=".MenuRegistro.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
