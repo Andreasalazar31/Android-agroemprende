@@ -50,7 +50,7 @@ public class UsuarioPerfil extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Toolbar();
+
     }
     @Override
     protected void onResume() {
@@ -151,43 +151,7 @@ public class UsuarioPerfil extends AppCompatActivity {
         }
     }
 
-    private void Toolbar(){
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ImageView icon1 = findViewById(R.id.icon1);
-        ImageView icon2 = findViewById(R.id.icon2);
-        ImageView icon3 = findViewById(R.id.icon3);
 
-        icon1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UsuarioPerfil.this, UsuarioPerfil.class);
-                startActivity(intent);
-            }
-        });
-        icon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UsuarioPerfil.this, UsuarioMenu.class);
-                startActivity(intent);
-            }
-        });
-        icon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearSharedPreferences();
-                Intent intent = new Intent(UsuarioPerfil.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-    private void clearSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear(); // Borra todas las preferencias
-        editor.apply();
-    }
 
 
 }
