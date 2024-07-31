@@ -26,6 +26,7 @@
         android:layout_width="315dp"
         android:layout_height="530dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="150dp"
         app:cardCornerRadius="23dp">
 
@@ -106,7 +107,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="998dp"
-        android:layout_height="460dp"
+        android:layout_height="390dp"
         android:layout_marginLeft="-93dp"
         android:layout_marginTop="-55dp"
         app:srcCompat="@drawable/img" />
@@ -116,18 +117,12 @@
         android:layout_width="184dp"
         android:layout_height="130dp"
         android:layout_marginLeft="43dp"
-        android:layout_marginTop="109dp"
+        android:layout_marginTop="90dp"
         android:text="Perfil"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
 
 
 </RelativeLayout>

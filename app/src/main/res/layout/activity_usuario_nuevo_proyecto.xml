@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="90dp"
             app:cardCornerRadius="23dp"
             app:cardElevation="8dp">
 
@@ -119,25 +119,7 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="44dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="73dp"
-                android:layout_marginTop="460dp"
-                app:srcCompat="@drawable/openia"
 
-                />
-
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¿Necesitás ayuda?"
-                android:layout_marginTop="470dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="123dp"
-                android:textColor="@color/azul"/>
 
         </androidx.cardview.widget.CardView>
 
