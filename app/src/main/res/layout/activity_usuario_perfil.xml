@@ -26,7 +26,7 @@
         android:layout_width="315dp"
         android:layout_height="530dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="150dp"
         app:cardCornerRadius="23dp">
 
         <ImageButton
@@ -40,8 +40,8 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
             android:layout_height="168dp"
+            android:layout_marginTop="20dp"
             app:srcCompat="@drawable/baseline_account_circle_24" />
 
         <TextView
@@ -53,25 +53,24 @@
             android:layout_marginBottom="57dp"
             android:text="Nombre"
             android:textSize="22sp"
-            android:textStyle="bold"/>
-
+            android:textStyle="bold" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="265dp"
             android:layout_marginLeft="18dp"
-            android:text="Correo Electronico:"/>
+            android:layout_marginTop="265dp"
+            android:text="Correo Electronico:" />
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
             android:layout_marginTop="296dp"
             android:background="@drawable/text_background"
             android:padding="17dp"
-            android:layout_marginLeft="19dp"
             android:textColor="#555555"
             android:textSize="18sp" />
 
@@ -79,22 +78,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="385dp"
             android:layout_marginLeft="19dp"
-            android:text="Telefono:"/>
+            android:layout_marginTop="385dp"
+            android:text="Telefono:" />
 
         <TextView
             android:id="@+id/tvTelefono"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
             android:layout_marginTop="416dp"
             android:background="@drawable/text_background"
             android:padding="17dp"
-            android:layout_marginLeft="19dp"
             android:textColor="#555555"
             android:textSize="18sp" />
-
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -102,8 +99,6 @@
             android:layout_height="wrap_content">
 
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
     </androidx.cardview.widget.CardView>
@@ -119,13 +114,14 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="184dp"
-        android:layout_height="134dp"
+        android:layout_height="130dp"
         android:layout_marginLeft="43dp"
-        android:layout_marginTop="129dp"
+        android:layout_marginTop="109dp"
         android:text="Perfil"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
