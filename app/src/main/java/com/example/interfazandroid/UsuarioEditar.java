@@ -28,6 +28,7 @@ public class UsuarioEditar extends AppCompatActivity {
     private Button btnguardardatos, btnEditEmail;
     private ApiService apiService;
     private boolean isEmailEditable = false;
+    private static final long CACHE_DURATION = 5 * 60 * 1000; // 5 minutos en milisegundos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +72,19 @@ public class UsuarioEditar extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cargarDatosUsuario();
-        loadDataFromSharedPreferences();
+        updateUserInterface();
+    }
+
+    private void updateUserInterface() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
+        long lastUpdateTime = sharedPreferences.getLong("LastUpdateTime", 0);
+        boolean shouldFetchFromApi = System.currentTimeMillis() - lastUpdateTime > CACHE_DURATION;
+
+        if (shouldFetchFromApi) {
+            cargarDatosUsuario();
+        } else {
+            loadDataFromSharedPreferences();
+        }
     }
 
     private void loadDataFromSharedPreferences() {
@@ -190,6 +202,7 @@ public class UsuarioEditar extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    UserUpdate userUpdate = createUserUpdateObject();
                     updateSharedPreferences(userUpdate);
                     Toast.makeText(UsuarioEditar.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
                     finish(); // Volver a PerfilUsuario

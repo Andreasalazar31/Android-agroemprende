@@ -13,7 +13,7 @@
         android:title="Perfil"
         android:icon="@drawable/perfil" />
     <item
-        android:id="@+id/logout"
+        android:id="@+id/cerrarSesion"
         android:title="Cerrar sesión"
         android:icon="@drawable/cerrarsesionn" />
 </menu>
