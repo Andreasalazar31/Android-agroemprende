@@ -43,7 +43,7 @@ public class UsuarioMenu extends AppCompatActivity {
                     // Ya estamos en Home, no necesitamos hacer nada
                     return true;
                 } else if (itemId == R.id.projects) {
-                    startActivity(new Intent(UsuarioMenu.this, UsuarioNuevoProyecto.class));
+                    startActivity(new Intent(UsuarioMenu.this, HistorialProyectos.class));
                     return true;
                 } else if (itemId == R.id.profile) {
                     startActivity(new Intent(UsuarioMenu.this, UsuarioPerfil.class));

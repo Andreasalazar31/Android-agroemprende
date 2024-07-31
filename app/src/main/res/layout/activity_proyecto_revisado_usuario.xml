@@ -101,7 +101,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:elevation="23dp"
-        android:layout_marginTop="630dp"
+        android:layout_marginTop="620dp"
         android:layout_marginLeft="117dp"
         android:text="Descargar" />
 

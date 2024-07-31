@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistorialProyectos">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis Proyectos"
+        android:layout_gravity="center"
+        android:layout_marginTop="-623dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginBottom="23dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="137dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="13dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transformando el Futuro Sostenible"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=" se centra en impulsar la transformación
+                     hacia prácticas sostenibles a través de
+                     lainnovación y la adaptación tecnológica"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?android:attr/textColorSecondary" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/agregarproyectos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="36dp"
+       android:layout_marginTop="-23dp"
+        android:layout_gravity="bottom|end"
+        android:text="Agregar"
+        app:icon="@drawable/agregar"
+       />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

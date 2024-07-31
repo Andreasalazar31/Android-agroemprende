@@ -7,8 +7,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="proyecto1"> </string>
-
+    <string name="calificacion">★★★★☆ 4.5</string>
+    <string name="Registrars"> Registrarse </string>
+    <string name="Registronombre">Nombre</string>
     <string name="seleccionar_tipo_documento">Seleccionar tipo de documento</string>
-
+<string name="registroApellido">Apellido</string>
+    <string name="registrocorreo">Correo Electronico</string>
+    <string name="registrotelefono">Telefono</string>
+    <string name="password">Contraseña</string>
+    <string name="confirpassword">Confirmar contraseña</string>
+    <string name="MenuTitulo">Agro Emprende</string>
 
 </resources>

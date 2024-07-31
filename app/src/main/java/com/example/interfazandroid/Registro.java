@@ -79,7 +79,7 @@ public class Registro extends AppCompatActivity {
         String contrasena = etPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellido) || TextUtils.isEmpty(email) || TextUtils.isEmpty(contrasena)){
-            Toast.makeText(this, "Por favor, complrts los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, complete los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
