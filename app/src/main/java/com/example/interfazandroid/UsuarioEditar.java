@@ -18,6 +18,8 @@ import com.example.interfazandroid.modelApi.UserUpdate;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +52,6 @@ public class UsuarioEditar extends AppCompatActivity {
         // Asegúrate de que esta vista esté en tu layout
         btnguardardatos = findViewById(R.id.btnguardardatos);
         btnEditEmail = findViewById(R.id.btnEditarEmail);
-
         Log.d("UsuarioEditar", "Views initialized: edtNombre = " + edtNombre + ", edtApellido = " + edtApellido +
                 ", edtEmail = " + edtEmail + ", edtNumIdentificacion = " + edtNumIdentificacion +
                 ", edtTelefono = " + edtTelefono + ", edtNacimiento = " + edtNacimiento +
@@ -73,6 +74,8 @@ public class UsuarioEditar extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateUserInterface();
+        cargarDatosUsuario();
+        loadDataFromSharedPreferences();
     }
 
     private void updateUserInterface() {
@@ -124,18 +127,14 @@ public class UsuarioEditar extends AppCompatActivity {
     private void cargarDatosUsuario() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyApp", MODE_PRIVATE);
         String token = sharedPreferences.getString("UserToken", null);
-
         if (token == null) {
             Log.e("EditarPerfilUsuario", "Token no encontrado en SharedPreferences");
             Toast.makeText(this, "Token no encontrado", Toast.LENGTH_SHORT).show();
             return;
         }
-
         apiService = new ApiLogin().getRetrofitInstance().create(ApiService.class);
         Call<UserDetails> call = apiService.getUserDetails("Bearer " + token);
-
         Log.d("EditarPerfilUsuario", "Llamada a la API con token: " + token);
-
         call.enqueue(new Callback<UserDetails>() {
             @Override
             public void onResponse(Call<UserDetails> call, Response<UserDetails> response) {
@@ -158,7 +157,6 @@ public class UsuarioEditar extends AppCompatActivity {
                     handleApiError(response);
                 }
             }
-
             @Override
             public void onFailure(Call<UserDetails> call, Throwable t) {
                 Log.e("EditarPerfilUsuario", "Error de conexión: " + t.getMessage(), t);
@@ -166,6 +164,7 @@ public class UsuarioEditar extends AppCompatActivity {
             }
         });
     }
+
 
     private void mostrarDatosEnUI(UserDetails.Sub sub) {
         if (edtNombre != null && sub.getNombre() != null) edtNombre.setText(sub.getNombre());
@@ -201,12 +200,15 @@ public class UsuarioEditar extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("ActualizarDatosUsuario", "Código de respuesta: " + response.code());
                 if (response.isSuccessful()) {
+                    Log.d("ActualizarDatosUsuario", "Actualización exitosa");
                     UserUpdate userUpdate = createUserUpdateObject();
                     updateSharedPreferences(userUpdate);
                     Toast.makeText(UsuarioEditar.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
                     finish(); // Volver a PerfilUsuario
                 } else {
+                    Log.e("ActualizarDatosUsuario", "Error en la actualización: " + response.message());
                     handleApiError(response);
                 }
             }
@@ -225,11 +227,23 @@ public class UsuarioEditar extends AppCompatActivity {
         userUpdate.setApellido(edtApellido.getText().toString());
         userUpdate.setNumIdentificacion(edtNumIdentificacion.getText().toString());
         userUpdate.setTelefono(edtTelefono.getText().toString());
-        userUpdate.setFechaNacimiento(edtNacimiento.getText().toString());
+
+        // Formatear la fecha correctamente
+        String inputDate = edtNacimiento.getText().toString();
+        try {
+            LocalDate date = LocalDate.parse(inputDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String isoDate = date.format(DateTimeFormatter.ISO_DATE);
+            userUpdate.setFechaNacimiento(isoDate);
+        } catch (Exception e) {
+            Log.e("ActualizarDatosUsuario", "Error al formatear la fecha: " + e.getMessage());
+            // Manejar el error, tal vez mostrar un Toast al usuario
+        }
 
         if (isEmailEditable) {
             userUpdate.setEmail(edtEmail.getText().toString());
         }
+
+        Log.d("ActualizarDatosUsuario", "Datos a enviar: " + new Gson().toJson(userUpdate));
         return userUpdate;
     }
 
@@ -252,6 +266,7 @@ public class UsuarioEditar extends AppCompatActivity {
         try {
             String errorBody = response.errorBody() != null ? response.errorBody().string() : "Sin cuerpo de error";
             Log.e("ApiError", "Cuerpo del error: " + errorBody);
+            Toast.makeText(this, "Error: " + errorBody, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("ApiError", "Error al leer el cuerpo del error", e);
         }
