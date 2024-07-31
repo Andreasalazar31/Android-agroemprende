@@ -15,7 +15,7 @@
         android:layout_height="184dp"
         android:layout_marginTop="93dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="23dp"
+        android:layout_marginRight="30dp"
         app:srcCompat="@drawable/img_4" />
 
     <TextView
@@ -24,9 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="320dp"
-        android:layout_marginLeft="118dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginRight="108dp"
         android:layout_marginBottom="57dp"
-        android:text="Agro Emprende"
+        android:text="@string/MenuTitulo"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -48,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:layout_marginLeft="313dp"
+        android:layout_marginRight="313dp"
         android:layout_marginTop="13dp"
         app:srcCompat="@drawable/notificaciones" />
 </RelativeLayout>
