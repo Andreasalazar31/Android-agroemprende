@@ -42,7 +42,7 @@
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="168dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             app:srcCompat="@drawable/baseline_account_circle_24" />
 
         <TextView
@@ -70,6 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="296dp"
+            android:drawableStart="@drawable/gmail"
+            android:drawablePadding="12dp"
             android:background="@drawable/text_background"
             android:padding="17dp"
             android:textColor="#555555"
@@ -91,6 +93,8 @@
             android:layout_marginTop="416dp"
             android:background="@drawable/text_background"
             android:padding="17dp"
+            android:drawableStart="@drawable/telephone"
+            android:drawablePadding="12dp"
             android:textColor="#555555"
             android:textSize="18sp" />
 
