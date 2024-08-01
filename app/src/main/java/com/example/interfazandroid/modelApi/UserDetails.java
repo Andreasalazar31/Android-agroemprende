@@ -1,13 +1,38 @@
 package com.example.interfazandroid.modelApi;
 
-public class UserDetails {
+import java.util.List;
 
+public class UserDetails {
     private Sub sub;
     private String role;
     private long iat;
-    private long exp;
 
-    public static class Sub{
+    // Getters y setters
+    public Sub getSub() {
+        return sub;
+    }
+
+    public void setSub(Sub sub) {
+        this.sub = sub;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public long getIat() {
+        return iat;
+    }
+
+    public void setIat(long iat) {
+        this.iat = iat;
+    }
+
+    public static class Sub {
         private String _id;
         private String nombre;
         private String apellido;
@@ -18,8 +43,10 @@ public class UserDetails {
         private String caracterizacion;
         private String contrasena;
         private String role;
+        private List<Proyecto> proyectos;
         private int __v;
 
+        // Getters y setters
         public String get_id() {
             return _id;
         }
@@ -100,6 +127,14 @@ public class UserDetails {
             this.role = role;
         }
 
+        public List<Proyecto> getProyectos() {
+            return proyectos;
+        }
+
+        public void setProyectos(List<Proyecto> proyectos) {
+            this.proyectos = proyectos;
+        }
+
         public int get__v() {
             return __v;
         }
@@ -108,37 +143,4 @@ public class UserDetails {
             this.__v = __v;
         }
     }
-
-    public Sub getSub() {
-        return sub;
-    }
-
-    public void setSub(Sub sub) {
-        this.sub = sub;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public long getIat() {
-        return iat;
-    }
-
-    public void setIat(long iat) {
-        this.iat = iat;
-    }
-
-    public long getExp() {
-        return exp;
-    }
-
-    public void setExp(long exp) {
-        this.exp = exp;
-    }
-
 }
