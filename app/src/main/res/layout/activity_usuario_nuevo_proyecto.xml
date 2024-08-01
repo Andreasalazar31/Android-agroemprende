@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".UsuarioNuevoProyecto">
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,12 +39,21 @@
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Título"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"/>
+
                 <EditText
+                    android:id="@+id/Titulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/text_background"
-                    android:hint="Titulo"
+                    android:hint="Título"
                     android:inputType="textMultiLine"
                     android:gravity="top"
                     android:scrollHorizontally="false"
@@ -56,12 +62,21 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha (YYYY-MM-DD)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"/>
+
                 <EditText
+                    android:id="@+id/Fecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/text_background"
-                    android:hint="Integrantes"
+                    android:hint="Fecha (YYYY-MM-DD)"
                     android:inputType="textMultiLine"
                     android:gravity="top"
                     android:scrollHorizontally="false"
@@ -70,12 +85,21 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"/>
+
                 <EditText
+                    android:id="@+id/Descripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/text_background"
-                    android:hint="Eje Estratégico"
+                    android:hint="Descripción"
                     android:inputType="textMultiLine"
                     android:gravity="top"
                     android:scrollHorizontally="false"
@@ -83,56 +107,19 @@
                     android:textColor="#555555"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/text_background"
-                    android:hint="Objetivo general"
-                    android:inputType="textMultiLine"
-                    android:gravity="top"
-                    android:scrollHorizontally="false"
-                    android:padding="14dp"
-                    android:textColor="#555555"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/text_background"
-                    android:hint="Objetivo Especifico"
-                    android:inputType="textMultiLine"
-                    android:gravity="top"
-                    android:scrollHorizontally="false"
-                    android:padding="14dp"
-                    android:textColor="#555555"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-
 
             </LinearLayout>
-
-
 
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnEnviar"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:elevation="23dp"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
             android:text="Enviar" />
-
-
 
     </LinearLayout>
 </ScrollView>

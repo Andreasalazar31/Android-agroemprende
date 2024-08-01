@@ -12,6 +12,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
+
+    ////Usuario
     @FormUrlEncoded
     @POST("auth/login")
     Call<Token> getlogin(
@@ -31,5 +33,10 @@ public interface ApiService {
             @Body UserUpdate userUpdateRequest
     );
 
+    ////Proyectos
+    @POST ("/proyectos")
+    Call<Void> registerProyecto(
+            @Header("Authorization") String token,
+            @Body ProyectRegister proyectRegister );
 
 }
